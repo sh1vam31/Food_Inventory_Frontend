@@ -99,12 +99,12 @@ frontend/
 
 **Development (.env.local)**
 ```env
-NEXT_PUBLIC_API_URL=http://localhost:8000
+NEXT_PUBLIC_FOOD_API_URL=http://localhost:8000
 ```
 
 **Production (Vercel)**
 ```env
-NEXT_PUBLIC_API_URL=https://your-backend.onrender.com
+NEXT_PUBLIC_FOOD_API_URL=https://your-backend.onrender.com
 ```
 
 ### API Client Configuration
@@ -169,7 +169,7 @@ const { theme, toggleTheme } = useTheme()
    - Select Next.js framework (auto-detected)
 
 2. **Configure Environment**
-   - Add `NEXT_PUBLIC_API_URL` environment variable
+   - Add `NEXT_PUBLIC_FOOD_API_URL` environment variable
    - Point to your deployed backend URL
 
 3. **Deploy**
@@ -299,10 +299,10 @@ npm run lint --fix
 1. **API Connection Failed**
    ```bash
    # Check environment variables
-   echo $NEXT_PUBLIC_API_URL
+   echo $NEXT_PUBLIC_FOOD_API_URL
    
    # Verify backend is running
-   curl $NEXT_PUBLIC_API_URL/health
+   curl $NEXT_PUBLIC_FOOD_API_URL/health
    ```
 
 2. **Build Errors**
