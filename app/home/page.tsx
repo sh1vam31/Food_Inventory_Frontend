@@ -39,7 +39,7 @@ export default function HomePage() {
   ]
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-emerald-50 via-white to-teal-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 transition-colors duration-300">
+    <div className="min-h-screen bg-gradient-to-br from-green-50 via-white to-emerald-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 transition-colors duration-300">
       {/* Hero Section */}
       <div className="relative overflow-hidden">
         {/* Background Pattern */}
@@ -49,10 +49,10 @@ export default function HomePage() {
           <div className="text-center max-w-4xl mx-auto">
             {/* Logo/Brand */}
             <div className="flex items-center justify-center mb-8">
-              <div className="bg-gradient-to-r from-blue-600 to-purple-600 p-3 rounded-2xl">
+              <div className="bg-green-600 p-3 rounded-2xl">
                 <BarChart3 className="h-12 w-12 text-white" />
               </div>
-              <h1 className="ml-4 text-4xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+              <h1 className="ml-4 text-4xl font-bold text-green-600 dark:text-green-400">
                 Food Inventory Pro
               </h1>
             </div>
@@ -60,7 +60,7 @@ export default function HomePage() {
             {/* Main Headline */}
             <h2 className="text-5xl md:text-6xl font-bold text-gray-900 dark:text-gray-100 mb-6 leading-tight">
               Smart Food Inventory
-              <span className="block bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+              <span className="block text-green-600 dark:text-green-400">
                 Management System
               </span>
             </h2>
@@ -75,7 +75,7 @@ export default function HomePage() {
             <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
               <Link 
                 href="/dashboard"
-                className={`group bg-gradient-to-r from-blue-600 to-purple-600 text-white px-8 py-4 rounded-xl font-semibold text-lg transition-all duration-300 transform hover:scale-105 hover:shadow-2xl ${isHovered ? 'shadow-2xl scale-105' : 'shadow-lg'}`}
+                className={`group bg-green-600 text-white px-8 py-4 rounded-xl font-semibold text-lg transition-all duration-300 transform hover:scale-105 hover:shadow-2xl hover:bg-green-700 ${isHovered ? 'shadow-2xl scale-105' : 'shadow-lg'}`}
                 onMouseEnter={() => setIsHovered(true)}
                 onMouseLeave={() => setIsHovered(false)}
               >
@@ -85,7 +85,7 @@ export default function HomePage() {
               
               <Link 
                 href="/demo"
-                className="border-2 border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 px-8 py-4 rounded-xl font-semibold text-lg hover:border-blue-600 dark:hover:border-blue-500 hover:text-blue-600 dark:hover:text-blue-400 transition-all duration-300 hover:shadow-lg"
+                className="border-2 border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 px-8 py-4 rounded-xl font-semibold text-lg hover:border-green-600 dark:hover:border-green-500 hover:text-green-600 dark:hover:text-green-400 transition-all duration-300 hover:shadow-lg"
               >
                 View Demo
               </Link>
@@ -138,7 +138,7 @@ export default function HomePage() {
       </div>
 
       {/* Benefits Section */}
-      <div className="py-20 bg-gradient-to-r from-blue-50 to-purple-50 dark:from-gray-800 dark:to-gray-900 transition-colors duration-300">
+      <div className="py-20 bg-gradient-to-r from-green-50 to-emerald-50 dark:from-gray-800 dark:to-gray-900 transition-colors duration-300">
         <div className="container mx-auto px-4">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div>
@@ -192,19 +192,19 @@ export default function HomePage() {
       </div>
 
       {/* CTA Section */}
-      <div className="py-20 bg-gradient-to-r from-blue-600 to-purple-600">
+      <div className="py-20 bg-green-600">
         <div className="container mx-auto px-4 text-center">
           <h3 className="text-4xl font-bold text-white mb-6">
             Ready to Transform Your Food Business?
           </h3>
-          <p className="text-xl text-blue-100 mb-8 max-w-2xl mx-auto">
+          <p className="text-xl text-green-100 mb-8 max-w-2xl mx-auto">
             Join the future of food inventory management. Start managing your inventory 
             like a pro with our intelligent system.
           </p>
           
           <Link 
             href="/dashboard"
-            className="inline-flex items-center bg-white text-blue-600 px-8 py-4 rounded-xl font-semibold text-lg hover:bg-gray-50 transition-all duration-300 transform hover:scale-105 hover:shadow-2xl"
+            className="inline-flex items-center bg-white text-green-600 px-8 py-4 rounded-xl font-semibold text-lg hover:bg-gray-50 transition-all duration-300 transform hover:scale-105 hover:shadow-2xl"
           >
             Start Your Journey
             <ArrowRight className="ml-2 h-5 w-5" />
@@ -216,7 +216,7 @@ export default function HomePage() {
       <div className="bg-gray-900 text-white py-12">
         <div className="container mx-auto px-4 text-center">
           <div className="flex items-center justify-center mb-4">
-            <BarChart3 className="h-8 w-8 text-blue-400 mr-3" />
+            <BarChart3 className="h-8 w-8 text-green-400 mr-3" />
             <span className="text-xl font-semibold">Food Inventory Pro</span>
           </div>
           <p className="text-gray-400">

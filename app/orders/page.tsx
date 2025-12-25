@@ -60,7 +60,7 @@ export default function OrdersPage() {
   const getStatusBadge = (status: string) => {
     switch (status) {
       case 'PLACED':
-        return 'inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-emerald-100 dark:bg-emerald-900 text-emerald-800 dark:text-emerald-200'
+        return 'inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 dark:bg-green-900 text-green-800 dark:text-green-200'
       case 'CANCELLED':
         return 'inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-red-100 dark:bg-red-900 text-red-800 dark:text-red-200'
       case 'COMPLETED':
@@ -73,7 +73,7 @@ export default function OrdersPage() {
   if (loading) {
     return (
       <div className="flex items-center justify-center min-h-64">
-        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-emerald-600"></div>
+        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-green-600"></div>
       </div>
     )
   }
@@ -88,7 +88,7 @@ export default function OrdersPage() {
             Manage and track all customer orders
           </p>
         </div>
-        <Link href="/orders/new" className="bg-emerald-600 hover:bg-emerald-700 text-white font-medium py-2 px-4 rounded-lg transition-colors flex items-center">
+        <Link href="/orders/new" className="bg-green-600 hover:bg-green-700 text-white font-medium py-2 px-4 rounded-lg transition-colors flex items-center">
           <Plus className="h-4 w-4 mr-2" />
           New Order
         </Link>
@@ -104,7 +104,7 @@ export default function OrdersPage() {
           </div>
           <h3 className="text-lg font-medium text-gray-900 dark:text-gray-100 mb-2">No orders yet</h3>
           <p className="text-gray-600 dark:text-gray-400 mb-4">Start taking orders to see them here.</p>
-          <Link href="/orders/new" className="bg-emerald-600 hover:bg-emerald-700 text-white font-medium py-2 px-4 rounded-lg transition-colors">
+          <Link href="/orders/new" className="bg-green-600 hover:bg-green-700 text-white font-medium py-2 px-4 rounded-lg transition-colors">
             Place First Order
           </Link>
         </div>
@@ -162,7 +162,7 @@ export default function OrdersPage() {
                   <>
                     <button
                       onClick={() => handleCompleteOrder(order.id)}
-                      className="bg-emerald-600 hover:bg-emerald-700 text-white font-medium py-2 px-3 rounded-lg transition-colors flex items-center"
+                      className="bg-green-600 hover:bg-green-700 text-white font-medium py-2 px-3 rounded-lg transition-colors flex items-center"
                     >
                       <Check className="h-4 w-4 mr-1" />
                       Complete

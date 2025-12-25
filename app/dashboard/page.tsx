@@ -53,9 +53,9 @@ export default function Dashboard() {
   return (
     <div className="space-y-8">
       {/* Header */}
-      <div className="bg-gradient-to-r from-blue-600 to-purple-600 text-white p-8 rounded-2xl">
+      <div className="bg-green-600 text-white p-8 rounded-2xl">
         <h1 className="text-4xl font-bold mb-2">Dashboard</h1>
-        <p className="text-blue-100 text-lg">
+        <p className="text-green-100 text-lg">
           Welcome to your Food Inventory Management System
         </p>
       </div>
@@ -64,12 +64,12 @@ export default function Dashboard() {
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
         <div className="bg-white dark:bg-gray-800 p-6 rounded-xl shadow-lg border border-gray-100 dark:border-gray-700 hover:shadow-xl transition-shadow">
           <div className="flex items-center">
-            <div className="p-3 bg-blue-50 dark:bg-blue-900/30 rounded-xl">
-              <Package className="h-8 w-8 text-blue-600 dark:text-blue-400" />
+            <div className="p-3 bg-green-50 dark:bg-green-900/30 rounded-xl">
+              <Package className="h-8 w-8 text-green-600 dark:text-green-400" />
             </div>
             <div className="ml-4">
               <p className="text-sm font-medium text-gray-600 dark:text-gray-400">Raw Materials</p>
-              <p className="text-3xl font-bold text-gray-900 dark:text-gray-100">{stats.totalRawMaterials}</p>
+              <p className="text-3xl font-bold text-green-600 dark:text-green-400">{stats.totalRawMaterials}</p>
             </div>
           </div>
         </div>
@@ -93,7 +93,7 @@ export default function Dashboard() {
             </div>
             <div className="ml-4">
               <p className="text-sm font-medium text-gray-600 dark:text-gray-400">Total Orders</p>
-              <p className="text-3xl font-bold text-gray-900 dark:text-gray-100">{stats.totalOrders}</p>
+              <p className="text-3xl font-bold text-green-600 dark:text-green-400">{stats.totalOrders}</p>
             </div>
           </div>
         </div>

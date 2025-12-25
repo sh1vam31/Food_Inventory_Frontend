@@ -45,7 +45,7 @@ export default function InventoryPage() {
   if (loading) {
     return (
       <div className="flex items-center justify-center min-h-64">
-        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-emerald-600"></div>
+        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-green-600"></div>
       </div>
     )
   }
@@ -60,7 +60,7 @@ export default function InventoryPage() {
             Manage your raw materials and monitor stock levels
           </p>
         </div>
-        <Link href="/inventory/add" className="bg-emerald-600 hover:bg-emerald-700 text-white font-medium py-2 px-4 rounded-lg transition-colors flex items-center">
+        <Link href="/inventory/add" className="bg-green-600 hover:bg-green-700 text-white font-medium py-2 px-4 rounded-lg transition-colors flex items-center">
           <Plus className="h-4 w-4 mr-2" />
           Add Raw Material
         </Link>
@@ -104,7 +104,7 @@ export default function InventoryPage() {
             }
           </p>
           {filter === 'all' && (
-            <Link href="/inventory/add" className="bg-emerald-600 hover:bg-emerald-700 text-white font-medium py-2 px-4 rounded-lg transition-colors">
+            <Link href="/inventory/add" className="bg-green-600 hover:bg-green-700 text-white font-medium py-2 px-4 rounded-lg transition-colors">
               Add Raw Material
             </Link>
           )}

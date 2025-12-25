@@ -54,7 +54,7 @@ export default function MenuPage() {
   if (loading) {
     return (
       <div className="flex items-center justify-center min-h-64">
-        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-emerald-600"></div>
+        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-green-600"></div>
       </div>
     )
   }
@@ -69,7 +69,7 @@ export default function MenuPage() {
             Manage your food items and their recipes
           </p>
         </div>
-        <Link href="/menu/add" className="bg-emerald-600 hover:bg-emerald-700 text-white font-medium py-2 px-4 rounded-lg transition-colors flex items-center">
+        <Link href="/menu/add" className="bg-green-600 hover:bg-green-700 text-white font-medium py-2 px-4 rounded-lg transition-colors flex items-center">
           <Plus className="h-4 w-4 mr-2" />
           Add Food Item
         </Link>
@@ -83,7 +83,7 @@ export default function MenuPage() {
           <p className="text-gray-600 dark:text-gray-400 mb-4">
             Create your first food item to start building your menu.
           </p>
-          <Link href="/menu/add" className="bg-emerald-600 hover:bg-emerald-700 text-white font-medium py-2 px-4 rounded-lg transition-colors">
+          <Link href="/menu/add" className="bg-green-600 hover:bg-green-700 text-white font-medium py-2 px-4 rounded-lg transition-colors">
             Add Food Item
           </Link>
         </div>
@@ -129,7 +129,7 @@ export default function MenuPage() {
                   className={`flex-1 font-medium py-2 px-3 rounded-lg transition-colors ${
                     item.is_available 
                       ? 'bg-gray-300 hover:bg-gray-400 dark:bg-gray-600 dark:hover:bg-gray-500 text-gray-700 dark:text-gray-200'
-                      : 'bg-emerald-600 hover:bg-emerald-700 text-white'
+                      : 'bg-green-600 hover:bg-green-700 text-white'
                   }`}
                 >
                   {item.is_available ? 'Mark Unavailable' : 'Mark Available'}

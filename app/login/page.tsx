@@ -51,7 +51,7 @@ export default function LoginPage() {
         {/* Header */}
         <div className="text-center">
           <div className="flex justify-center mb-6">
-            <div className="bg-emerald-600 p-4 rounded-2xl shadow-2xl">
+            <div className="bg-green-600 p-4 rounded-2xl shadow-2xl">
               <BarChart3 className="h-12 w-12 text-white" strokeWidth={2} />
             </div>
           </div>
@@ -88,7 +88,7 @@ export default function LoginPage() {
                   required
                   value={username}
                   onChange={(e) => setUsername(e.target.value)}
-                  className="block w-full pl-10 pr-3 py-3 border border-gray-300 dark:border-slate-600 rounded-lg bg-white dark:bg-slate-700 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 transition-colors"
+                  className="block w-full pl-10 pr-3 py-3 border border-gray-300 dark:border-slate-600 rounded-lg bg-white dark:bg-slate-700 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-green-500 transition-colors"
                   placeholder="Enter your username"
                 />
               </div>
@@ -110,7 +110,7 @@ export default function LoginPage() {
                   required
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
-                  className="block w-full pl-10 pr-12 py-3 border border-gray-300 dark:border-slate-600 rounded-lg bg-white dark:bg-slate-700 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 transition-colors"
+                  className="block w-full pl-10 pr-12 py-3 border border-gray-300 dark:border-slate-600 rounded-lg bg-white dark:bg-slate-700 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-green-500 transition-colors"
                   placeholder="Enter your password"
                 />
                 <button
@@ -132,7 +132,7 @@ export default function LoginPage() {
               <button
                 type="submit"
                 disabled={isLoading}
-                className="w-full flex justify-center py-3 px-4 border border-transparent rounded-lg shadow-sm text-sm font-medium text-white bg-emerald-600 hover:bg-emerald-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-emerald-500 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+                className="w-full flex justify-center py-3 px-4 border border-transparent rounded-lg shadow-sm text-sm font-medium text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
               >
                 {isLoading ? (
                   <div className="flex items-center">
@@ -149,7 +149,7 @@ export default function LoginPage() {
 
         {/* Footer */}
         <div className="text-center">
-          <Link href="/" className="text-sm text-emerald-600 hover:text-emerald-500 dark:text-emerald-400 dark:hover:text-emerald-300">
+          <Link href="/" className="text-sm text-green-600 hover:text-green-500 dark:text-green-400 dark:hover:text-green-300">
             ← Back to Home
           </Link>
         </div>
