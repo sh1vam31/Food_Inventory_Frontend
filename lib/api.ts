@@ -21,17 +21,36 @@ const apiClient = axios.create({
   },
 })
 
-// Request interceptor for logging
+// Request interceptor to add auth token
 apiClient.interceptors.request.use((config) => {
   console.log(`API Request: ${config.method?.toUpperCase()} ${config.url}`)
+  
+  // Add auth token if available
+  if (typeof window !== 'undefined') {
+    const token = localStorage.getItem('access_token')
+    if (token) {
+      config.headers.Authorization = `Bearer ${token}`
+    }
+  }
+  
   return config
 })
 
-// Response interceptor for error handling
+// Response interceptor for error handling and token refresh
 apiClient.interceptors.response.use(
   (response) => response,
-  (error) => {
+  async (error) => {
     console.error('API Error:', error.response?.data || error.message)
+    
+    // Handle 401 errors (unauthorized)
+    if (error.response?.status === 401) {
+      // Clear token and redirect to login
+      if (typeof window !== 'undefined') {
+        localStorage.removeItem('access_token')
+        window.location.href = '/login'
+      }
+    }
+    
     return Promise.reject(error)
   }
 )

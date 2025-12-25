@@ -62,15 +62,15 @@ export default function AddRawMaterialPage() {
       </div>
 
       {/* Form */}
-      <div className="card">
+      <div className="bg-white dark:bg-gray-800 rounded-lg shadow-sm border border-gray-200 dark:border-gray-700 p-6">
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
           {/* Name */}
           <div>
-            <label className="form-label">Name *</label>
+            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Name *</label>
             <input
               type="text"
               {...register('name')}
-              className="form-input"
+              className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm focus:outline-none focus:ring-emerald-500 focus:border-emerald-500 dark:bg-gray-700 dark:text-white"
               placeholder="e.g., Flour, Sugar, Eggs"
             />
             {errors.name && (
@@ -80,8 +80,8 @@ export default function AddRawMaterialPage() {
 
           {/* Unit */}
           <div>
-            <label className="form-label">Unit *</label>
-            <select {...register('unit')} className="form-input">
+            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Unit *</label>
+            <select {...register('unit')} className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm focus:outline-none focus:ring-emerald-500 focus:border-emerald-500 dark:bg-gray-700 dark:text-white">
               <option value="">Select unit</option>
               <option value="kg">Kilogram (kg)</option>
               <option value="gram">Gram (g)</option>
@@ -95,13 +95,13 @@ export default function AddRawMaterialPage() {
 
           {/* Quantity Available */}
           <div>
-            <label className="form-label">Initial Quantity *</label>
+            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Initial Quantity *</label>
             <input
               type="number"
               step="0.01"
               min="0"
               {...register('quantity_available', { valueAsNumber: true })}
-              className="form-input"
+              className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm focus:outline-none focus:ring-emerald-500 focus:border-emerald-500 dark:bg-gray-700 dark:text-white"
               placeholder="0.00"
             />
             {errors.quantity_available && (
@@ -111,13 +111,13 @@ export default function AddRawMaterialPage() {
 
           {/* Minimum Threshold */}
           <div>
-            <label className="form-label">Minimum Threshold *</label>
+            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Minimum Threshold *</label>
             <input
               type="number"
               step="0.01"
               min="0"
               {...register('minimum_threshold', { valueAsNumber: true })}
-              className="form-input"
+              className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm focus:outline-none focus:ring-emerald-500 focus:border-emerald-500 dark:bg-gray-700 dark:text-white"
               placeholder="0.00"
             />
             <p className="text-gray-500 dark:text-gray-400 text-sm mt-1">
@@ -133,11 +133,11 @@ export default function AddRawMaterialPage() {
             <button
               type="submit"
               disabled={loading}
-              className="btn btn-primary flex-1"
+              className="flex-1 bg-emerald-600 hover:bg-emerald-700 disabled:bg-emerald-400 text-white font-medium py-2 px-4 rounded-md transition-colors"
             >
               {loading ? 'Creating...' : 'Create Raw Material'}
             </button>
-            <Link href="/inventory" className="btn btn-secondary">
+            <Link href="/inventory" className="bg-gray-300 hover:bg-gray-400 dark:bg-gray-600 dark:hover:bg-gray-500 text-gray-700 dark:text-gray-200 font-medium py-2 px-4 rounded-md transition-colors">
               Cancel
             </Link>
           </div>

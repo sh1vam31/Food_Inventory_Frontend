@@ -85,7 +85,7 @@ export default function AddFoodItemPage() {
   if (fetchingMaterials) {
     return (
       <div className="flex items-center justify-center min-h-64">
-        <div className="animate-spin rounded-full h-12 w-12 border-b-2 spinner-primary"></div>
+        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-emerald-600"></div>
       </div>
     )
   }
@@ -106,7 +106,7 @@ export default function AddFoodItemPage() {
       </div>
 
       {/* Form */}
-      <div className="card">
+      <div className="bg-white dark:bg-gray-800 rounded-lg shadow-sm border border-gray-200 dark:border-gray-700 p-6">
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
           {/* Basic Info */}
           <div className="space-y-4">
@@ -114,11 +114,11 @@ export default function AddFoodItemPage() {
             
             {/* Name */}
             <div>
-              <label className="form-label">Name *</label>
+              <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Name *</label>
               <input
                 type="text"
                 {...register('name')}
-                className="form-input"
+                className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm focus:outline-none focus:ring-emerald-500 focus:border-emerald-500 dark:bg-gray-700 dark:text-white"
                 placeholder="e.g., Margherita Pizza, Chicken Sandwich"
               />
               {errors.name && (
@@ -128,13 +128,13 @@ export default function AddFoodItemPage() {
 
             {/* Price */}
             <div>
-              <label className="form-label">Price ($) *</label>
+              <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Price ($) *</label>
               <input
                 type="number"
                 step="0.01"
                 min="0"
                 {...register('price', { valueAsNumber: true })}
-                className="form-input"
+                className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm focus:outline-none focus:ring-emerald-500 focus:border-emerald-500 dark:bg-gray-700 dark:text-white"
                 placeholder="0.00"
               />
               {errors.price && (
@@ -162,7 +162,7 @@ export default function AddFoodItemPage() {
               <button
                 type="button"
                 onClick={addIngredient}
-                className="btn btn-secondary"
+                className="bg-gray-300 hover:bg-gray-400 dark:bg-gray-600 dark:hover:bg-gray-500 text-gray-700 dark:text-gray-200 font-medium py-2 px-4 rounded-md transition-colors flex items-center"
               >
                 <Plus className="h-4 w-4 mr-1" />
                 Add Ingredient
@@ -184,10 +184,10 @@ export default function AddFoodItemPage() {
               {fields.map((field, index) => (
                 <div key={field.id} className="flex items-end space-x-4 p-4 border border-gray-200 dark:border-gray-700 rounded-lg">
                   <div className="flex-1">
-                    <label className="form-label">Raw Material *</label>
+                    <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Raw Material *</label>
                     <select
                       {...register(`ingredients.${index}.raw_material_id`, { valueAsNumber: true })}
-                      className="form-input"
+                      className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm focus:outline-none focus:ring-emerald-500 focus:border-emerald-500 dark:bg-gray-700 dark:text-white"
                     >
                       <option value={0}>Select raw material</option>
                       {rawMaterials.map((material) => (
@@ -204,13 +204,13 @@ export default function AddFoodItemPage() {
                   </div>
 
                   <div className="flex-1">
-                    <label className="form-label">Quantity per unit *</label>
+                    <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Quantity per unit *</label>
                     <input
                       type="number"
                       step="0.01"
                       min="0"
                       {...register(`ingredients.${index}.quantity_required_per_unit`, { valueAsNumber: true })}
-                      className="form-input"
+                      className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm focus:outline-none focus:ring-emerald-500 focus:border-emerald-500 dark:bg-gray-700 dark:text-white"
                       placeholder="0.00"
                     />
                     {errors.ingredients?.[index]?.quantity_required_per_unit && (
@@ -224,7 +224,7 @@ export default function AddFoodItemPage() {
                     type="button"
                     onClick={() => remove(index)}
                     disabled={fields.length === 1}
-                    className="btn btn-danger disabled:opacity-50 disabled:cursor-not-allowed"
+                    className="bg-red-600 hover:bg-red-700 disabled:bg-red-400 disabled:cursor-not-allowed text-white font-medium py-2 px-3 rounded-md transition-colors"
                   >
                     <Trash2 className="h-4 w-4" />
                   </button>
@@ -242,11 +242,11 @@ export default function AddFoodItemPage() {
             <button
               type="submit"
               disabled={loading || rawMaterials.length === 0}
-              className="btn btn-primary flex-1 disabled:opacity-50 disabled:cursor-not-allowed"
+              className="flex-1 bg-emerald-600 hover:bg-emerald-700 disabled:bg-emerald-400 disabled:cursor-not-allowed text-white font-medium py-2 px-4 rounded-md transition-colors"
             >
               {loading ? 'Creating...' : 'Create Food Item'}
             </button>
-            <Link href="/menu" className="btn btn-secondary">
+            <Link href="/menu" className="bg-gray-300 hover:bg-gray-400 dark:bg-gray-600 dark:hover:bg-gray-500 text-gray-700 dark:text-gray-200 font-medium py-2 px-4 rounded-md transition-colors">
               Cancel
             </Link>
           </div>
