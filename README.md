@@ -1,37 +1,46 @@
-# 🍕 Food Inventory Management System - Frontend
+#  Food Inventory Management System - Frontend
+This is the frontend of my Food Inventory Management System, built using Next.js, TypeScript, and Tailwind CSS.
+The goal of this project is to provide a clean and practical interface for managing food inventory, menu items, and orders while keeping inventory usage accurate in real time.
 
-Modern Next.js frontend with TypeScript, Tailwind CSS, and real-time inventory management.
+Live Demo
 
-![Next.js](https://img.shields.io/badge/Next.js-000000?style=for-the-badge&logo=next.js&logoColor=white)
-![TypeScript](https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white)
-![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white)
+https://food-inventory-frontend.vercel.app/home
 
-## ✨ Features
 
-### 🎨 User Interface
-- **Modern Design**: Clean, responsive UI with Tailwind CSS
-- **Dark/Light Theme**: Automatic theme switching with system preference
-- **Mobile Responsive**: Works perfectly on all device sizes
-- **Intuitive Navigation**: Easy-to-use interface for all operations
+##  Features
+# User Interface
+	•	Clean and modern UI using Tailwind CSS
+	•	Dark and light theme support (system preference + manual toggle)
+	•	Fully responsive layout (mobile, tablet, desktop)
+	•	Simple navigation for inventory, menu, and orders
 
-### 🏪 Inventory Management
-- **Raw Materials**: Add, edit, delete ingredients with smart validation
-- **Visual Indicators**: Low stock alerts and recipe usage badges
-- **Smart Deletion**: Prevents deletion of materials used in recipes
-- **Real-time Updates**: Live inventory status and availability
 
-### 🍽️ Menu Management
-- **Food Items**: Create menu items with pricing
-- **Recipe Builder**: Define ingredient requirements visually
-- **Availability Tracking**: Automatic availability based on stock
+# Inventory Management
+	•	Add, update, and delete raw materials
+	•	Validation to prevent incorrect inputs
+	•	Visual indicators for:
+	•	Low stock items
+	•	Ingredients used in recipes
+	•	Smart deletion logic:
+	•	Raw materials used in recipes cannot be deleted
+	•	Inventory updates reflect instantly across the app
 
-### 📋 Order Processing
-- **Smart Cart**: Real-time inventory checking while building orders
-- **Order Validation**: Pre-order availability verification
-- **Order Tracking**: Complete order lifecycle management
-- **Error Handling**: User-friendly error messages and guidance
+# Menu Management
+	•	Create food items with pricing
+	•	Visual recipe builder to define ingredient usage
+	•	Automatic availability calculation based on stock
+	•	Prevents ordering items when ingredients are insufficient
 
-## 🚀 Quick Start
+
+# Order Processing
+	•	Real-time inventory checks while adding items to cart
+	•	Order validation before placement
+	•	Clear error messages if stock is insufficient
+	•	Complete order flow from creation to confirmation
+
+
+
+##  Quick Start
 
 ### Prerequisites
 - Node.js 18+
@@ -61,7 +70,7 @@ Modern Next.js frontend with TypeScript, Tailwind CSS, and real-time inventory m
    - Frontend: http://localhost:3000
    - Make sure backend is running on configured API URL
 
-## 📁 Project Structure
+##  Project Structure
 
 ```
 frontend/
@@ -93,7 +102,7 @@ frontend/
 └── public/             # Static assets
 ```
 
-## 🔧 Configuration
+##  Configuration
 
 ### Environment Variables
 
@@ -114,7 +123,7 @@ The API client automatically handles:
 - Base URL configuration
 - Content-Type headers
 
-## 🎨 UI Components
+##  UI Components
 
 ### Design System
 - **Colors**: Emerald/teal theme with dark mode support
@@ -122,20 +131,8 @@ The API client automatically handles:
 - **Spacing**: Consistent spacing using Tailwind utilities
 - **Components**: Reusable button, card, and form components
 
-### Custom Components
-```css
-/* Global CSS Classes */
-.btn              /* Base button styles */
-.btn-primary      /* Primary action buttons */
-.btn-secondary    /* Secondary action buttons */
-.btn-success      /* Success/confirm buttons */
-.btn-danger       /* Delete/cancel buttons */
-.card             /* Container cards */
-.badge            /* Status indicators */
-.form-input       /* Form input fields */
-```
 
-## 📊 Key Features
+##  Key Features
 
 ### Inventory Management
 - **Smart Validation**: Real-time form validation
@@ -159,7 +156,7 @@ const { theme, toggleTheme } = useTheme()
 // Persistent theme storage
 ```
 
-## 🚀 Deployment
+##  Deployment
 
 ### Vercel Deployment (Recommended)
 
@@ -177,41 +174,9 @@ const { theme, toggleTheme } = useTheme()
    - Preview deployments for pull requests
    - Custom domain support
 
-### Manual Deployment
-```bash
-# Build for production
-npm run build
 
-# Start production server
-npm start
 
-# Export static files (if needed)
-npm run export
-```
-
-## 🧪 Testing
-
-### Development Testing
-```bash
-# Type checking
-npm run type-check
-
-# Linting
-npm run lint
-
-# Build test
-npm run build
-```
-
-### Manual Testing Checklist
-- [ ] All pages load correctly
-- [ ] API connections work
-- [ ] Forms validate properly
-- [ ] Theme switching works
-- [ ] Mobile responsiveness
-- [ ] Error handling displays correctly
-
-## 🔄 API Integration
+##  API Integration
 
 ### API Client Features
 - **Automatic Error Handling**: User-friendly error messages
@@ -237,7 +202,7 @@ api.createOrder(orderData)
 api.getOrders()
 ```
 
-## 🎯 User Experience
+##  User Experience
 
 ### Navigation Flow
 1. **Dashboard**: Overview and quick actions
@@ -245,13 +210,9 @@ api.getOrders()
 3. **Menu**: Create and manage food items
 4. **Orders**: Process orders and track status
 
-### Error Handling
-- **Form Validation**: Real-time field validation
-- **API Errors**: User-friendly error messages
-- **Network Issues**: Graceful degradation
-- **Loading States**: Clear loading indicators
 
-## 🔧 Development
+
+##  Development
 
 ### Code Quality
 ```bash
@@ -265,60 +226,9 @@ npm run type-check
 npm run lint --fix
 ```
 
-### Adding New Features
-1. Create components in `/components`
-2. Add pages in `/app` directory
-3. Update types in `/types/index.ts`
-4. Add API calls in `/lib/api.ts`
 
-## 📱 Responsive Design
 
-### Breakpoints
-- **Mobile**: < 768px
-- **Tablet**: 768px - 1024px
-- **Desktop**: > 1024px
-
-### Mobile Features
-- Touch-friendly buttons
-- Optimized forms
-- Responsive navigation
-- Swipe gestures support
-
-## 🔐 Security
-
-### Client-Side Security
-- **Input Sanitization**: XSS protection
-- **Environment Variables**: Secure API URL handling
-- **HTTPS Only**: Production HTTPS enforcement
-- **CORS Handling**: Proper cross-origin requests
-
-## 🐛 Troubleshooting
-
-### Common Issues
-
-1. **API Connection Failed**
-   ```bash
-   # Check environment variables
-   echo $NEXT_PUBLIC_FOOD_API_URL
-   
-   # Verify backend is running
-   curl $NEXT_PUBLIC_FOOD_API_URL/health
-   ```
-
-2. **Build Errors**
-   ```bash
-   # Clear cache
-   rm -rf .next
-   npm run build
-   ```
-
-3. **Type Errors**
-   ```bash
-   # Check TypeScript
-   npm run type-check
-   ```
-
-## 📈 Performance
+##  Performance
 
 ### Optimization Features
 - **Next.js App Router**: Optimized routing and loading
@@ -332,19 +242,8 @@ npm run lint --fix
 npm run analyze
 ```
 
-## 🤝 Contributing
 
-1. Fork the repository
-2. Create feature branch (`git checkout -b feature/amazing-feature`)
-3. Commit changes (`git commit -m 'Add amazing feature'`)
-4. Push to branch (`git push origin feature/amazing-feature`)
-5. Open Pull Request
-
-## 📝 License
-
-This project is licensed under the MIT License.
-
-## 🔗 Related
+##  Related
 
 - **Backend Repository**: [food-inventory-backend](link-to-backend-repo)
 - **API Documentation**: Available at backend `/docs` endpoint
