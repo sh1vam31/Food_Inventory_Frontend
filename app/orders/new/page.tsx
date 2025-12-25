@@ -130,7 +130,10 @@ export default function NewOrderPage() {
   if (loading) {
     return (
       <div className="flex items-center justify-center min-h-64">
-        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary-600"></div>
+        <div 
+          className="animate-spin rounded-full h-12 w-12 border-b-2"
+          style={{ borderBottomColor: '#2F855A' }}
+        ></div>
       </div>
     )
   }
@@ -164,16 +167,24 @@ export default function NewOrderPage() {
           ) : (
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               {foodItems.map((item) => (
-                <div key={item.id} className="card">
+                <div 
+                  key={item.id} 
+                  className="flex flex-col h-full bg-white dark:bg-gray-800 rounded-lg p-6 transition-colors duration-300"
+                  style={{
+                    border: '1px solid #E5E7EB',
+                    boxShadow: '0 4px 12px rgba(0,0,0,0.05)'
+                  }}
+                >
+                  {/* Header Section */}
                   <div className="flex justify-between items-start mb-4">
                     <div>
                       <h3 className="text-lg font-semibold text-gray-900 dark:text-gray-100">{item.name}</h3>
-                      <p className="text-xl font-bold text-blue-600 dark:text-blue-400">${item.price.toFixed(2)}</p>
+                      <p className="text-xl font-bold dark:text-green-300" style={{ color: '#2F855A' }}>${item.price.toFixed(2)}</p>
                     </div>
                   </div>
 
-                  {/* Ingredients */}
-                  <div className="mb-4">
+                  {/* Ingredients Section - Flexible Content */}
+                  <div className="flex-grow mb-4">
                     <p className="text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Ingredients:</p>
                     <div className="space-y-1">
                       {item.ingredients.map((ingredient) => (
@@ -184,14 +195,23 @@ export default function NewOrderPage() {
                     </div>
                   </div>
 
-                  {/* Add to Cart */}
-                  <button
-                    onClick={() => addToCart(item)}
-                    className="w-full btn btn-primary"
-                  >
-                    <Plus className="h-4 w-4 mr-2" />
-                    Add to Cart
-                  </button>
+                  {/* Add to Cart Button - Fixed at Bottom */}
+                  <div className="mt-auto">
+                    <button
+                      onClick={() => addToCart(item)}
+                      className="w-full text-white font-medium py-2 px-4 rounded-lg transition-all duration-300 hover:shadow-lg"
+                      style={{ backgroundColor: '#2F855A' }}
+                      onMouseEnter={(e) => {
+                        e.currentTarget.style.backgroundColor = '#276749'
+                      }}
+                      onMouseLeave={(e) => {
+                        e.currentTarget.style.backgroundColor = '#2F855A'
+                      }}
+                    >
+                      <Plus className="h-4 w-4 mr-2" />
+                      Add to Cart
+                    </button>
+                  </div>
                 </div>
               ))}
             </div>
@@ -200,7 +220,13 @@ export default function NewOrderPage() {
 
         {/* Cart */}
         <div className="space-y-6">
-          <div className="card sticky top-4">
+          <div 
+            className="sticky top-4 bg-white dark:bg-gray-800 rounded-lg p-6 transition-colors duration-300"
+            style={{
+              border: '1px solid #E5E7EB',
+              boxShadow: '0 4px 12px rgba(0,0,0,0.05)'
+            }}
+          >
             <h2 className="text-xl font-semibold text-gray-900 dark:text-gray-100 mb-4">Order Summary</h2>
             
             {cart.length === 0 ? (
@@ -257,8 +283,14 @@ export default function NewOrderPage() {
                 )}
 
                 {inventoryCheck && inventoryCheck.can_fulfill && (
-                  <div className="mb-4 p-3 bg-green-50 dark:bg-green-900/20 border border-green-200 dark:border-green-800 rounded-lg">
-                    <p className="text-sm font-medium text-green-800 dark:text-green-300">✓ All ingredients available</p>
+                  <div 
+                    className="mb-4 p-3 rounded-lg border"
+                    style={{ 
+                      backgroundColor: 'rgba(47, 133, 90, 0.1)',
+                      borderColor: 'rgba(47, 133, 90, 0.3)'
+                    }}
+                  >
+                    <p className="text-sm font-medium" style={{ color: '#2F855A' }}>✓ All ingredients available</p>
                   </div>
                 )}
 
@@ -266,7 +298,7 @@ export default function NewOrderPage() {
                 <div className="border-t border-gray-200 dark:border-gray-700 pt-4">
                   <div className="flex justify-between items-center mb-4">
                     <span className="text-lg font-semibold text-gray-900 dark:text-gray-100">Total:</span>
-                    <span className="text-xl font-bold text-blue-600 dark:text-blue-400">
+                    <span className="text-xl font-bold dark:text-green-300" style={{ color: '#2F855A' }}>
                       ${totalPrice.toFixed(2)}
                     </span>
                   </div>
@@ -274,7 +306,18 @@ export default function NewOrderPage() {
                   <button
                     onClick={placeOrder}
                     disabled={placing || !inventoryCheck?.can_fulfill || cart.length === 0}
-                    className="w-full btn btn-success disabled:opacity-50 disabled:cursor-not-allowed"
+                    className="w-full text-white font-medium py-2 px-4 rounded-lg transition-all duration-300 hover:shadow-lg disabled:opacity-50 disabled:cursor-not-allowed"
+                    style={{ backgroundColor: '#2F855A' }}
+                    onMouseEnter={(e) => {
+                      if (!e.currentTarget.disabled) {
+                        e.currentTarget.style.backgroundColor = '#276749'
+                      }
+                    }}
+                    onMouseLeave={(e) => {
+                      if (!e.currentTarget.disabled) {
+                        e.currentTarget.style.backgroundColor = '#2F855A'
+                      }
+                    }}
                   >
                     {placing ? 'Placing Order...' : 'Place Order'}
                   </button>
