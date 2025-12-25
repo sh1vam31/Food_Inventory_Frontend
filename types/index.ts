@@ -23,6 +23,12 @@ export interface RawMaterialUpdate {
   minimum_threshold?: number
 }
 
+export interface RawMaterialWithUsage extends RawMaterial {
+  is_used_in_recipes: boolean
+  food_items: string[]
+  usage_count: number
+}
+
 // Food Item Types
 export interface FoodItemIngredient {
   id: number

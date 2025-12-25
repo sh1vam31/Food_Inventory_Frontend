@@ -3,6 +3,7 @@ import {
   RawMaterial,
   RawMaterialCreate,
   RawMaterialUpdate,
+  RawMaterialWithUsage,
   FoodItem,
   FoodItemCreate,
   Order,
@@ -62,7 +63,7 @@ export const api = {
     return response.data
   },
 
-  async getRawMaterialsWithUsage(): Promise<RawMaterial[]> {
+  async getRawMaterialsWithUsage(): Promise<RawMaterialWithUsage[]> {
     const response = await apiClient.get('/api/raw-materials/with-usage')
     return response.data
   },

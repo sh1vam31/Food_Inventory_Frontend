@@ -1,16 +1,10 @@
 'use client'
 
 import { useEffect, useState } from 'react'
-import { Plus, Edit, Trash2, AlertTriangle, Package, X } from 'lucide-react'
+import { Plus, Edit, AlertTriangle, Package, X } from 'lucide-react'
 import { api } from '@/lib/api'
-import { RawMaterial } from '@/types'
+import { RawMaterial, RawMaterialWithUsage } from '@/types'
 import Link from 'next/link'
-
-interface RawMaterialWithUsage extends RawMaterial {
-  is_used_in_recipes: boolean;
-  food_items: string[];
-  usage_count: number;
-}
 
 export default function InventoryPage() {
   const [rawMaterials, setRawMaterials] = useState<RawMaterialWithUsage[]>([])
