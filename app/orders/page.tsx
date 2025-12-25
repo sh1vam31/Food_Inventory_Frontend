@@ -60,20 +60,20 @@ export default function OrdersPage() {
   const getStatusBadge = (status: string) => {
     switch (status) {
       case 'PLACED':
-        return 'badge badge-success'
+        return 'inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-emerald-100 dark:bg-emerald-900 text-emerald-800 dark:text-emerald-200'
       case 'CANCELLED':
-        return 'badge badge-danger'
+        return 'inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-red-100 dark:bg-red-900 text-red-800 dark:text-red-200'
       case 'COMPLETED':
-        return 'badge badge-gray'
+        return 'inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-gray-100 dark:bg-gray-700 text-gray-800 dark:text-gray-200'
       default:
-        return 'badge badge-gray'
+        return 'inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-gray-100 dark:bg-gray-700 text-gray-800 dark:text-gray-200'
     }
   }
 
   if (loading) {
     return (
       <div className="flex items-center justify-center min-h-64">
-        <div className="animate-spin rounded-full h-12 w-12 border-b-2 spinner-primary"></div>
+        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-emerald-600"></div>
       </div>
     )
   }
@@ -88,7 +88,7 @@ export default function OrdersPage() {
             Manage and track all customer orders
           </p>
         </div>
-        <Link href="/orders/new" className="btn btn-primary">
+        <Link href="/orders/new" className="bg-emerald-600 hover:bg-emerald-700 text-white font-medium py-2 px-4 rounded-lg transition-colors flex items-center">
           <Plus className="h-4 w-4 mr-2" />
           New Order
         </Link>
@@ -104,14 +104,14 @@ export default function OrdersPage() {
           </div>
           <h3 className="text-lg font-medium text-gray-900 dark:text-gray-100 mb-2">No orders yet</h3>
           <p className="text-gray-600 dark:text-gray-400 mb-4">Start taking orders to see them here.</p>
-          <Link href="/orders/new" className="btn btn-primary">
+          <Link href="/orders/new" className="bg-emerald-600 hover:bg-emerald-700 text-white font-medium py-2 px-4 rounded-lg transition-colors">
             Place First Order
           </Link>
         </div>
       ) : (
         <div className="space-y-4">
           {orders.map((order) => (
-            <div key={order.id} className="card">
+            <div key={order.id} className="bg-white dark:bg-slate-800 rounded-xl p-6 shadow-sm border border-gray-200 dark:border-slate-700">
               <div className="flex items-center justify-between mb-4">
                 <div className="flex items-center space-x-4">
                   <h3 className="text-lg font-semibold text-gray-900 dark:text-gray-100">
@@ -122,7 +122,7 @@ export default function OrdersPage() {
                   </span>
                 </div>
                 <div className="text-right">
-                  <p className="text-xl font-bold text-emerald-600 dark:text-emerald-400">
+                  <p className="text-xl font-bold text-blue-600 dark:text-blue-400">
                     ${order.total_price.toFixed(2)}
                   </p>
                   <p className="text-sm text-gray-600 dark:text-gray-400">
@@ -152,7 +152,7 @@ export default function OrdersPage() {
               <div className="flex space-x-2">
                 <Link
                   href={`/orders/${order.id}`}
-                  className="btn btn-secondary"
+                  className="bg-gray-300 hover:bg-gray-400 dark:bg-gray-600 dark:hover:bg-gray-500 text-gray-700 dark:text-gray-200 font-medium py-2 px-3 rounded-lg transition-colors flex items-center"
                 >
                   <Eye className="h-4 w-4 mr-1" />
                   View Details
@@ -162,14 +162,14 @@ export default function OrdersPage() {
                   <>
                     <button
                       onClick={() => handleCompleteOrder(order.id)}
-                      className="btn btn-success"
+                      className="bg-emerald-600 hover:bg-emerald-700 text-white font-medium py-2 px-3 rounded-lg transition-colors flex items-center"
                     >
                       <Check className="h-4 w-4 mr-1" />
                       Complete
                     </button>
                     <button
                       onClick={() => handleCancelOrder(order.id)}
-                      className="btn btn-danger"
+                      className="bg-red-600 hover:bg-red-700 text-white font-medium py-2 px-3 rounded-lg transition-colors flex items-center"
                     >
                       <X className="h-4 w-4 mr-1" />
                       Cancel

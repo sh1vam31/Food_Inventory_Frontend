@@ -130,7 +130,7 @@ export default function NewOrderPage() {
   if (loading) {
     return (
       <div className="flex items-center justify-center min-h-64">
-        <div className="animate-spin rounded-full h-12 w-12 border-b-2 spinner-primary"></div>
+        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary-600"></div>
       </div>
     )
   }
@@ -168,7 +168,7 @@ export default function NewOrderPage() {
                   <div className="flex justify-between items-start mb-4">
                     <div>
                       <h3 className="text-lg font-semibold text-gray-900 dark:text-gray-100">{item.name}</h3>
-                      <p className="text-xl font-bold text-emerald-600 dark:text-emerald-400">${item.price.toFixed(2)}</p>
+                      <p className="text-xl font-bold text-blue-600 dark:text-blue-400">${item.price.toFixed(2)}</p>
                     </div>
                   </div>
 
@@ -266,7 +266,7 @@ export default function NewOrderPage() {
                 <div className="border-t border-gray-200 dark:border-gray-700 pt-4">
                   <div className="flex justify-between items-center mb-4">
                     <span className="text-lg font-semibold text-gray-900 dark:text-gray-100">Total:</span>
-                    <span className="text-xl font-bold text-emerald-600 dark:text-emerald-400">
+                    <span className="text-xl font-bold text-blue-600 dark:text-blue-400">
                       ${totalPrice.toFixed(2)}
                     </span>
                   </div>

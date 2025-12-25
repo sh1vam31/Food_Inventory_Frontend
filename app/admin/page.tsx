@@ -74,7 +74,13 @@ export default function AdminPage() {
           'Authorization': `Bearer ${token}`,
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(formData),
+        body: JSON.stringify({
+          username: formData.username.trim(),
+          email: formData.email.trim(),
+          password: formData.password, // No length restrictions with scrypt
+          full_name: formData.full_name.trim(),
+          role: formData.role.toUpperCase() // Convert to match backend enum
+        }),
       })
 
       if (response.ok) {
@@ -91,7 +97,8 @@ export default function AdminPage() {
         alert('User created successfully!')
       } else {
         const error = await response.json()
-        alert(`Error: ${error.detail}`)
+        console.error('Registration error:', error)
+        alert(`Error: ${error.detail || 'Failed to create user'}`)
       }
     } catch (error) {
       console.error('Error creating user:', error)
@@ -122,7 +129,7 @@ export default function AdminPage() {
           </div>
           <button
             onClick={() => setShowCreateForm(true)}
-            className="btn btn-primary"
+            className="bg-emerald-600 hover:bg-emerald-700 text-white font-medium py-2 px-4 rounded-lg transition-colors flex items-center"
           >
             <Plus className="h-4 w-4 mr-2" />
             Add User
@@ -214,14 +221,14 @@ export default function AdminPage() {
                 <button
                   type="submit"
                   disabled={creating}
-                  className="btn btn-primary"
+                  className="bg-emerald-600 hover:bg-emerald-700 disabled:bg-emerald-400 text-white font-medium py-2 px-4 rounded-lg transition-colors"
                 >
                   {creating ? 'Creating...' : 'Create User'}
                 </button>
                 <button
                   type="button"
                   onClick={() => setShowCreateForm(false)}
-                  className="btn btn-secondary"
+                  className="bg-gray-300 hover:bg-gray-400 dark:bg-gray-600 dark:hover:bg-gray-500 text-gray-700 dark:text-gray-200 font-medium py-2 px-4 rounded-lg transition-colors"
                 >
                   Cancel
                 </button>

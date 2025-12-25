@@ -1,202 +1,188 @@
 'use client'
 
+import { useState } from 'react'
 import Link from 'next/link'
-import { ArrowRight, BarChart3, CheckCircle } from 'lucide-react'
-import { useAuth } from '@/contexts/AuthContext'
+import { ArrowRight, Package, ShoppingCart, BarChart3, CheckCircle, Zap, Shield, TrendingUp } from 'lucide-react'
 
 export default function HomePage() {
-  const { isAuthenticated } = useAuth()
+  const [isHovered, setIsHovered] = useState(false)
+
+  const features = [
+    {
+      icon: <Package className="h-8 w-8 text-blue-600" />,
+      title: "Smart Inventory Management",
+      description: "Real-time tracking of raw materials with automatic low-stock alerts"
+    },
+    {
+      icon: <Zap className="h-8 w-8 text-yellow-500" />,
+      title: "Automatic Deduction",
+      description: "Inventory automatically updates when orders are placed - no manual work!"
+    },
+    {
+      icon: <Shield className="h-8 w-8 text-green-600" />,
+      title: "Transaction Safety",
+      description: "Atomic database transactions ensure data consistency and prevent overselling"
+    },
+    {
+      icon: <TrendingUp className="h-8 w-8 text-purple-600" />,
+      title: "Real-time Analytics",
+      description: "Live dashboard with insights, trends, and business intelligence"
+    }
+  ]
+
+  const benefits = [
+    "Prevent stockouts with smart alerts",
+    "Reduce manual inventory tracking by 90%",
+    "Eliminate overselling with atomic transactions",
+    "Get real-time business insights",
+    "Scale your food business efficiently"
+  ]
 
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen bg-gradient-to-br from-emerald-50 via-white to-teal-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 transition-colors duration-300">
       {/* Hero Section */}
-      <div className="relative overflow-hidden bg-white dark:bg-slate-800">
-        <div className="container mx-auto px-4 py-24 md:py-32">
+      <div className="relative overflow-hidden">
+        {/* Background Pattern */}
+        <div className="absolute inset-0 bg-grid-pattern opacity-5"></div>
+        
+        <div className="relative container mx-auto px-4 py-20">
           <div className="text-center max-w-4xl mx-auto">
-            {/* Logo */}
-            <div className="inline-flex items-center justify-center mb-12">
-              <div className="bg-emerald-600 p-4 rounded-2xl shadow-2xl">
-                <BarChart3 className="h-12 w-12 text-white" strokeWidth={2} />
+            {/* Logo/Brand */}
+            <div className="flex items-center justify-center mb-8">
+              <div className="bg-gradient-to-r from-blue-600 to-purple-600 p-3 rounded-2xl">
+                <BarChart3 className="h-12 w-12 text-white" />
               </div>
-              <span className="ml-4 text-2xl font-bold text-emerald-600 dark:text-emerald-400">
+              <h1 className="ml-4 text-4xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
                 Food Inventory Pro
-              </span>
+              </h1>
             </div>
 
             {/* Main Headline */}
-            <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold mb-6 leading-tight">
-              <span className="block text-gray-900 dark:text-white">Smart Food Inventory</span>
-              <span className="block text-emerald-600 dark:text-emerald-400">Management System</span>
-            </h1>
+            <h2 className="text-5xl md:text-6xl font-bold text-gray-900 dark:text-gray-100 mb-6 leading-tight">
+              Smart Food Inventory
+              <span className="block bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+                Management System
+              </span>
+            </h2>
 
             {/* Subtitle */}
-            <p className="text-xl md:text-2xl text-gray-600 dark:text-slate-300 mb-12 max-w-3xl mx-auto leading-relaxed">
-              Revolutionize your food business with automatic inventory deduction,
-              real-time tracking, and intelligent analytics. Built for modern
-              restaurants and food services.
+            <p className="text-xl text-gray-600 dark:text-gray-300 mb-8 max-w-2xl mx-auto leading-relaxed">
+              Revolutionize your food business with automatic inventory deduction, 
+              real-time tracking, and intelligent analytics. Built for modern restaurants and food services.
             </p>
 
             {/* CTA Buttons */}
-            <div className="flex flex-col sm:flex-row gap-4 justify-center mb-16">
-              <Link
-                href={isAuthenticated ? "/dashboard" : "/login"}
-                className="inline-flex items-center justify-center bg-emerald-600 hover:bg-emerald-700 text-white px-8 py-4 rounded-xl font-semibold text-lg transition-all duration-300 transform hover:scale-105 shadow-xl"
+            <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
+              <Link 
+                href="/dashboard"
+                className={`group bg-gradient-to-r from-blue-600 to-purple-600 text-white px-8 py-4 rounded-xl font-semibold text-lg transition-all duration-300 transform hover:scale-105 hover:shadow-2xl ${isHovered ? 'shadow-2xl scale-105' : 'shadow-lg'}`}
+                onMouseEnter={() => setIsHovered(true)}
+                onMouseLeave={() => setIsHovered(false)}
               >
-                {isAuthenticated ? "Go to Dashboard" : "Get Started Now"}
-                <ArrowRight className="ml-2 h-5 w-5" />
+                Get Started Now
+                <ArrowRight className="inline-block ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
               </Link>
-
-              <Link
+              
+              <Link 
                 href="/demo"
-                className="inline-flex items-center justify-center border-2 border-emerald-600 text-emerald-600 dark:text-emerald-400 hover:bg-emerald-600 hover:text-white px-8 py-4 rounded-xl font-semibold text-lg transition-all duration-300"
+                className="border-2 border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 px-8 py-4 rounded-xl font-semibold text-lg hover:border-blue-600 dark:hover:border-blue-500 hover:text-blue-600 dark:hover:text-blue-400 transition-all duration-300 hover:shadow-lg"
               >
                 View Demo
               </Link>
             </div>
 
             {/* Trust Indicators */}
-            <div className="flex flex-wrap items-center justify-center gap-8 text-gray-500 dark:text-slate-400">
-              <div className="flex items-center gap-2">
-                <CheckCircle className="h-5 w-5 text-emerald-600 dark:text-emerald-400" />
-                <span className="font-medium">Production Ready</span>
+            <div className="flex items-center justify-center space-x-8 text-sm text-gray-500 dark:text-gray-400">
+              <div className="flex items-center">
+                <CheckCircle className="h-4 w-4 text-green-500 mr-2" />
+                Production Ready
               </div>
-              <div className="flex items-center gap-2">
-                <CheckCircle className="h-5 w-5 text-emerald-600 dark:text-emerald-400" />
-                <span className="font-medium">Real-time Updates</span>
+              <div className="flex items-center">
+                <CheckCircle className="h-4 w-4 text-green-500 mr-2" />
+                Real-time Updates
               </div>
-              <div className="flex items-center gap-2">
-                <CheckCircle className="h-5 w-5 text-emerald-600 dark:text-emerald-400" />
-                <span className="font-medium">Secure & Reliable</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      {/* Features Section - Separate Container */}
-      <div className="bg-gray-100 dark:bg-slate-700">
-        <div className="py-16">
-          <div className="container mx-auto px-4">
-            <div className="text-center mb-12">
-              <h2 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-4">
-                Powerful Features for Modern Food Businesses
-              </h2>
-              <p className="text-lg text-gray-600 dark:text-slate-300 max-w-2xl mx-auto">
-                Everything you need to manage inventory, process orders, and grow your food business efficiently.
-              </p>
-            </div>
-
-            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-              {/* Smart Inventory Management */}
-              <div className="text-left">
-                <div className="w-12 h-12 bg-emerald-600 rounded-lg flex items-center justify-center mb-4">
-                  <CheckCircle className="h-6 w-6 text-white" />
-                </div>
-                <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3">Smart Inventory Management</h3>
-                <p className="text-gray-600 dark:text-slate-300 text-sm leading-relaxed">
-                  Real-time tracking of raw materials with automatic low-stock alerts
-                </p>
-              </div>
-
-              {/* Automatic Deduction */}
-              <div className="text-left">
-                <div className="w-12 h-12 bg-emerald-600 rounded-lg flex items-center justify-center mb-4">
-                  <svg className="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
-                  </svg>
-                </div>
-                <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3">Automatic Deduction</h3>
-                <p className="text-gray-600 dark:text-slate-300 text-sm leading-relaxed">
-                  Inventory automatically updates when orders are placed - no manual work
-                </p>
-              </div>
-
-              {/* Transaction Safety */}
-              <div className="text-left">
-                <div className="w-12 h-12 bg-emerald-600 rounded-lg flex items-center justify-center mb-4">
-                  <svg className="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
-                  </svg>
-                </div>
-                <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3">Transaction Safety</h3>
-                <p className="text-gray-600 dark:text-slate-300 text-sm leading-relaxed">
-                  Atomic database transactions ensure data consistency and prevent overselling
-                </p>
-              </div>
-
-              {/* Real-time Analytics */}
-              <div className="text-left">
-                <div className="w-12 h-12 bg-emerald-600 rounded-lg flex items-center justify-center mb-4">
-                  <BarChart3 className="h-6 w-6 text-white" />
-                </div>
-                <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3">Real-time Analytics</h3>
-                <p className="text-gray-600 dark:text-slate-300 text-sm leading-relaxed">
-                  Live dashboard with insights, trends, and business intelligence
-                </p>
+              <div className="flex items-center">
+                <CheckCircle className="h-4 w-4 text-green-500 mr-2" />
+                Secure & Reliable
               </div>
             </div>
           </div>
         </div>
       </div>
 
-      {/* Why Choose Section */}
-      <div className="py-24 bg-gray-50 dark:bg-slate-800">
+      {/* Features Section */}
+      <div className="py-20 bg-white dark:bg-gray-800 transition-colors duration-300">
         <div className="container mx-auto px-4">
-          <div className="grid lg:grid-cols-2 gap-16 items-center">
-            {/* Left Side - Benefits */}
-            <div>
-              <h2 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-6">
-                Why Choose Our System?
-              </h2>
-              <p className="text-lg text-gray-600 dark:text-slate-300 mb-8">
-                Built with modern technology and best practices, our system provides enterprise-grade reliability with startup-level agility.
-              </p>
+          <div className="text-center mb-16">
+            <h3 className="text-3xl font-bold text-gray-900 dark:text-gray-100 mb-4">
+              Powerful Features for Modern Food Businesses
+            </h3>
+            <p className="text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
+              Everything you need to manage inventory, process orders, and grow your food business efficiently.
+            </p>
+          </div>
 
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+            {features.map((feature, index) => (
+              <div 
+                key={index}
+                className="bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 border border-gray-100 dark:border-gray-700"
+              >
+                <div className="mb-4">{feature.icon}</div>
+                <h4 className="text-xl font-semibold text-gray-900 dark:text-gray-100 mb-3">{feature.title}</h4>
+                <p className="text-gray-600 dark:text-gray-300 leading-relaxed">{feature.description}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      {/* Benefits Section */}
+      <div className="py-20 bg-gradient-to-r from-blue-50 to-purple-50 dark:from-gray-800 dark:to-gray-900 transition-colors duration-300">
+        <div className="container mx-auto px-4">
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
+            <div>
+              <h3 className="text-4xl font-bold text-gray-900 dark:text-gray-100 mb-6">
+                Why Choose Our System?
+              </h3>
+              <p className="text-lg text-gray-600 dark:text-gray-300 mb-8">
+                Built with modern technology and best practices, our system provides 
+                enterprise-grade reliability with startup-level agility.
+              </p>
+              
               <div className="space-y-4">
-                {[
-                  'Prevent stockouts with smart alerts',
-                  'Reduce manual inventory tracking by 90%',
-                  'Eliminate overselling with atomic transactions',
-                  'Get real-time business insights',
-                  'Scale your food business efficiently'
-                ].map((benefit, index) => (
-                  <div key={index} className="flex items-center gap-4">
-                    <CheckCircle className="h-6 w-6 text-emerald-600 dark:text-emerald-400 flex-shrink-0" />
-                    <span className="text-gray-700 dark:text-slate-300 text-lg">{benefit}</span>
+                {benefits.map((benefit, index) => (
+                  <div key={index} className="flex items-center">
+                    <CheckCircle className="h-6 w-6 text-green-500 mr-3 flex-shrink-0" />
+                    <span className="text-gray-700 dark:text-gray-300 text-lg">{benefit}</span>
                   </div>
                 ))}
               </div>
             </div>
 
-            {/* Right Side - Demo Card */}
             <div className="relative">
-              <div className="bg-white dark:bg-slate-700 rounded-2xl p-8 shadow-2xl border border-gray-200 dark:border-slate-600">
-                <div className="text-center mb-6">
-                  <div className="inline-flex items-center gap-2 bg-emerald-600 text-white px-6 py-3 rounded-xl shadow-xl mb-4">
-                    <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 3h2l.4 2M7 13h10l4-8H5.4m0 0L7 13m0 0l-2.5 5M7 13l2.5 5m6-5v6a2 2 0 01-2 2H9a2 2 0 01-2-2v-6m8 0V9a2 2 0 00-2-2H9a2 2 0 00-2 2v4.01" />
-                    </svg>
-                    <span className="font-bold text-lg">Order Placed!</span>
+              <div className="bg-white dark:bg-gray-800 p-8 rounded-2xl shadow-2xl border border-gray-200 dark:border-gray-700">
+                <div className="text-center">
+                  <div className="bg-gradient-to-r from-green-400 to-blue-500 text-white p-4 rounded-xl mb-6">
+                    <ShoppingCart className="h-12 w-12 mx-auto mb-2" />
+                    <h4 className="text-xl font-semibold">Order Placed!</h4>
                   </div>
-                </div>
-                <div className="space-y-3">
-                  {[
-                    { item: 'Flour', qty: '-0.3kg' },
-                    { item: 'Tomato', qty: '-0.2kg' },
-                    { item: 'Cheese', qty: '-0.15kg' }
-                  ].map((item, idx) => (
-                    <div key={idx} className="flex justify-between items-center p-4 bg-gray-50 dark:bg-slate-600 rounded-xl">
-                      <span className="text-gray-800 dark:text-slate-200 font-medium">{item.item}</span>
-                      <span className="bg-red-500 text-white px-3 py-1 rounded-lg font-bold text-sm">
-                        {item.qty}
-                      </span>
+                  <div className="space-y-3 text-left">
+                    <div className="flex justify-between items-center p-3 bg-gray-50 dark:bg-gray-700 rounded-lg">
+                      <span className="text-gray-600 dark:text-gray-300">Flour</span>
+                      <span className="text-red-500 dark:text-red-400 font-semibold">-0.3kg</span>
                     </div>
-                  ))}
-                </div>
-                <div className="mt-6 text-center">
-                  <div className="inline-flex items-center gap-2 text-emerald-600 dark:text-emerald-400 font-semibold">
-                    <CheckCircle className="h-5 w-5" />
-                    <span>Inventory automatically updated!</span>
+                    <div className="flex justify-between items-center p-3 bg-gray-50 dark:bg-gray-700 rounded-lg">
+                      <span className="text-gray-600 dark:text-gray-300">Tomato</span>
+                      <span className="text-red-500 dark:text-red-400 font-semibold">-0.2kg</span>
+                    </div>
+                    <div className="flex justify-between items-center p-3 bg-gray-50 dark:bg-gray-700 rounded-lg">
+                      <span className="text-gray-600 dark:text-gray-300">Cheese</span>
+                      <span className="text-red-500 dark:text-red-400 font-semibold">-0.15kg</span>
+                    </div>
+                  </div>
+                  <div className="mt-4 text-sm text-gray-500 dark:text-gray-400">
+                    ✨ Inventory automatically updated!
                   </div>
                 </div>
               </div>
@@ -205,37 +191,36 @@ export default function HomePage() {
         </div>
       </div>
 
-      {/* Call to Action Section */}
-      <div className="py-24 bg-emerald-600">
+      {/* CTA Section */}
+      <div className="py-20 bg-gradient-to-r from-blue-600 to-purple-600">
         <div className="container mx-auto px-4 text-center">
-          <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
+          <h3 className="text-4xl font-bold text-white mb-6">
             Ready to Transform Your Food Business?
-          </h2>
-          <p className="text-xl text-emerald-100 mb-10 max-w-2xl mx-auto">
-            Join the future of food inventory management. Start managing your inventory like a pro with our intelligent system.
+          </h3>
+          <p className="text-xl text-blue-100 mb-8 max-w-2xl mx-auto">
+            Join the future of food inventory management. Start managing your inventory 
+            like a pro with our intelligent system.
           </p>
-
-          <Link
-            href={isAuthenticated ? "/dashboard" : "/login"}
-            className="inline-flex items-center bg-white text-emerald-600 px-8 py-4 rounded-xl font-bold text-lg hover:bg-slate-50 transition-all duration-300 transform hover:scale-105 shadow-2xl"
+          
+          <Link 
+            href="/dashboard"
+            className="inline-flex items-center bg-white text-blue-600 px-8 py-4 rounded-xl font-semibold text-lg hover:bg-gray-50 transition-all duration-300 transform hover:scale-105 hover:shadow-2xl"
           >
-            {isAuthenticated ? "Go to Dashboard" : "Start Your Journey"}
+            Start Your Journey
             <ArrowRight className="ml-2 h-5 w-5" />
           </Link>
         </div>
       </div>
 
       {/* Footer */}
-      <div className="bg-slate-900 text-white py-12">
+      <div className="bg-gray-900 text-white py-12">
         <div className="container mx-auto px-4 text-center">
-          <div className="flex items-center justify-center gap-3 mb-4">
-            <div className="bg-emerald-600 p-3 rounded-xl">
-              <BarChart3 className="h-6 w-6 text-white" />
-            </div>
-            <span className="text-xl font-bold">Food Inventory Pro</span>
+          <div className="flex items-center justify-center mb-4">
+            <BarChart3 className="h-8 w-8 text-blue-400 mr-3" />
+            <span className="text-xl font-semibold">Food Inventory Pro</span>
           </div>
-          <p className="text-slate-400">
-            Powered by FastAPI, Next.js, and PostgreSQL
+          <p className="text-gray-400">
+            Powered by FastAPI, Next.js, and PostgreSQL.
           </p>
         </div>
       </div>
