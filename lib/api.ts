@@ -127,9 +127,22 @@ export const api = {
     return response.data
   },
 
-  async updateFoodItemAvailability(id: number, isAvailable: boolean): Promise<{ message: string; is_available: boolean }> {
+  async updateFoodItem(id: number, data: FoodItemCreate): Promise<FoodItem> {
+    const response = await apiClient.put(`/api/food-items/${id}`, data)
+    return response.data
+  },
+
+  async updateFoodItemAvailability(id: number, isAvailable: boolean, deleteIngredients: boolean = false): Promise<{ 
+    message: string; 
+    is_available: boolean;
+    ingredients_deleted?: boolean;
+    deleted_ingredients?: any[];
+  }> {
     const response = await apiClient.patch(`/api/food-items/${id}/availability`, null, {
-      params: { is_available: isAvailable }
+      params: { 
+        is_available: isAvailable,
+        delete_ingredients: deleteIngredients
+      }
     })
     return response.data
   },

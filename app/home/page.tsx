@@ -19,7 +19,7 @@ export default function HomePage() {
       description: "Inventory automatically updates when orders are placed - no manual work!"
     },
     {
-      icon: <Shield className="h-8 w-8 text-green-600" />,
+      icon: <Shield className="h-8 w-8" style={{ color: '#2F855A' }} />,
       title: "Transaction Safety",
       description: "Atomic database transactions ensure data consistency and prevent overselling"
     },
@@ -49,10 +49,10 @@ export default function HomePage() {
           <div className="text-center max-w-4xl mx-auto">
             {/* Logo/Brand */}
             <div className="flex items-center justify-center mb-8">
-              <div className="bg-green-600 p-3 rounded-2xl">
+              <div className="p-3 rounded-2xl" style={{ backgroundColor: '#2F855A' }}>
                 <BarChart3 className="h-12 w-12 text-white" />
               </div>
-              <h1 className="ml-4 text-4xl font-bold text-green-600 dark:text-green-400">
+              <h1 className="ml-4 text-4xl font-bold dark:text-green-300" style={{ color: '#2F855A' }}>
                 Food Inventory Pro
               </h1>
             </div>
@@ -60,7 +60,7 @@ export default function HomePage() {
             {/* Main Headline */}
             <h2 className="text-5xl md:text-6xl font-bold text-gray-900 dark:text-gray-100 mb-6 leading-tight">
               Smart Food Inventory
-              <span className="block text-green-600 dark:text-green-400">
+              <span className="block dark:text-green-300" style={{ color: '#2F855A' }}>
                 Management System
               </span>
             </h2>
@@ -75,9 +75,18 @@ export default function HomePage() {
             <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
               <Link 
                 href="/dashboard"
-                className={`group bg-green-600 text-white px-8 py-4 rounded-xl font-semibold text-lg transition-all duration-300 transform hover:scale-105 hover:shadow-2xl hover:bg-green-700 ${isHovered ? 'shadow-2xl scale-105' : 'shadow-lg'}`}
-                onMouseEnter={() => setIsHovered(true)}
-                onMouseLeave={() => setIsHovered(false)}
+                className={`group text-white px-8 py-4 rounded-xl font-semibold text-lg transition-all duration-300 transform hover:scale-105 hover:shadow-2xl ${isHovered ? 'shadow-2xl scale-105' : 'shadow-lg'}`}
+                style={{ 
+                  backgroundColor: '#2F855A'
+                }}
+                onMouseEnter={(e) => {
+                  setIsHovered(true)
+                  e.currentTarget.style.backgroundColor = '#276749'
+                }}
+                onMouseLeave={(e) => {
+                  setIsHovered(false)
+                  e.currentTarget.style.backgroundColor = '#2F855A'
+                }}
               >
                 Get Started Now
                 <ArrowRight className="inline-block ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
@@ -85,7 +94,15 @@ export default function HomePage() {
               
               <Link 
                 href="/demo"
-                className="border-2 border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 px-8 py-4 rounded-xl font-semibold text-lg hover:border-green-600 dark:hover:border-green-500 hover:text-green-600 dark:hover:text-green-400 transition-all duration-300 hover:shadow-lg"
+                className="border-2 border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 px-8 py-4 rounded-xl font-semibold text-lg transition-all duration-300 hover:shadow-lg"
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.borderColor = '#2F855A'
+                  e.currentTarget.style.color = '#2F855A'
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.borderColor = ''
+                  e.currentTarget.style.color = ''
+                }}
               >
                 View Demo
               </Link>
@@ -94,15 +111,15 @@ export default function HomePage() {
             {/* Trust Indicators */}
             <div className="flex items-center justify-center space-x-8 text-sm text-gray-500 dark:text-gray-400">
               <div className="flex items-center">
-                <CheckCircle className="h-4 w-4 text-green-500 mr-2" />
+                <CheckCircle className="h-4 w-4 mr-2" style={{ color: '#2F855A' }} />
                 Production Ready
               </div>
               <div className="flex items-center">
-                <CheckCircle className="h-4 w-4 text-green-500 mr-2" />
+                <CheckCircle className="h-4 w-4 mr-2" style={{ color: '#2F855A' }} />
                 Real-time Updates
               </div>
               <div className="flex items-center">
-                <CheckCircle className="h-4 w-4 text-green-500 mr-2" />
+                <CheckCircle className="h-4 w-4 mr-2" style={{ color: '#2F855A' }} />
                 Secure & Reliable
               </div>
             </div>
@@ -153,7 +170,7 @@ export default function HomePage() {
               <div className="space-y-4">
                 {benefits.map((benefit, index) => (
                   <div key={index} className="flex items-center">
-                    <CheckCircle className="h-6 w-6 text-green-500 mr-3 flex-shrink-0" />
+                    <CheckCircle className="h-6 w-6 mr-3 flex-shrink-0" style={{ color: '#2F855A' }} />
                     <span className="text-gray-700 dark:text-gray-300 text-lg">{benefit}</span>
                   </div>
                 ))}
@@ -163,7 +180,12 @@ export default function HomePage() {
             <div className="relative">
               <div className="bg-white dark:bg-gray-800 p-8 rounded-2xl shadow-2xl border border-gray-200 dark:border-gray-700">
                 <div className="text-center">
-                  <div className="bg-gradient-to-r from-green-400 to-blue-500 text-white p-4 rounded-xl mb-6">
+                  <div 
+                    className="text-white p-4 rounded-xl mb-6"
+                    style={{ 
+                      background: `linear-gradient(to right, #2F855A, #34996E)` 
+                    }}
+                  >
                     <ShoppingCart className="h-12 w-12 mx-auto mb-2" />
                     <h4 className="text-xl font-semibold">Order Placed!</h4>
                   </div>
@@ -192,19 +214,20 @@ export default function HomePage() {
       </div>
 
       {/* CTA Section */}
-      <div className="py-20 bg-green-600">
+      <div className="py-20" style={{ backgroundColor: '#2F855A' }}>
         <div className="container mx-auto px-4 text-center">
           <h3 className="text-4xl font-bold text-white mb-6">
             Ready to Transform Your Food Business?
           </h3>
-          <p className="text-xl text-green-100 mb-8 max-w-2xl mx-auto">
+          <p className="text-xl mb-8 max-w-2xl mx-auto" style={{ color: 'rgba(255, 255, 255, 0.9)' }}>
             Join the future of food inventory management. Start managing your inventory 
             like a pro with our intelligent system.
           </p>
           
           <Link 
             href="/dashboard"
-            className="inline-flex items-center bg-white text-green-600 px-8 py-4 rounded-xl font-semibold text-lg hover:bg-gray-50 transition-all duration-300 transform hover:scale-105 hover:shadow-2xl"
+            className="inline-flex items-center bg-white px-8 py-4 rounded-xl font-semibold text-lg hover:bg-gray-50 transition-all duration-300 transform hover:scale-105 hover:shadow-2xl"
+            style={{ color: '#2F855A' }}
           >
             Start Your Journey
             <ArrowRight className="ml-2 h-5 w-5" />
@@ -213,13 +236,18 @@ export default function HomePage() {
       </div>
 
       {/* Footer */}
-      <div className="bg-gray-900 text-white py-12">
+      <div 
+        className="text-white py-12 transition-colors duration-300"
+        style={{ 
+          background: `linear-gradient(to right, #1F5F3F, #374151)` 
+        }}
+      >
         <div className="container mx-auto px-4 text-center">
           <div className="flex items-center justify-center mb-4">
-            <BarChart3 className="h-8 w-8 text-green-400 mr-3" />
+            <BarChart3 className="h-8 w-8 mr-3" style={{ color: '#86EFAC' }} />
             <span className="text-xl font-semibold">Food Inventory Pro</span>
           </div>
-          <p className="text-gray-400">
+          <p className="text-gray-300 dark:text-gray-400">
             Powered by FastAPI, Next.js, and PostgreSQL.
           </p>
         </div>

@@ -1,13 +1,19 @@
 'use client'
 
 import { useEffect, useState } from 'react'
-import { Plus, Edit, Trash2, AlertTriangle, Package } from 'lucide-react'
+import { Plus, Edit, Trash2, AlertTriangle, Package, X } from 'lucide-react'
 import { api } from '@/lib/api'
 import { RawMaterial } from '@/types'
 import Link from 'next/link'
 
+interface RawMaterialWithUsage extends RawMaterial {
+  is_used_in_recipes: boolean;
+  food_items: string[];
+  usage_count: number;
+}
+
 export default function InventoryPage() {
-  const [rawMaterials, setRawMaterials] = useState<RawMaterial[]>([])
+  const [rawMaterials, setRawMaterials] = useState<RawMaterialWithUsage[]>([])
   const [loading, setLoading] = useState(true)
   const [filter, setFilter] = useState<'all' | 'low-stock'>('all')
 
@@ -17,7 +23,7 @@ export default function InventoryPage() {
 
   const fetchRawMaterials = async () => {
     try {
-      const data = await api.getRawMaterials()
+      const data = await api.getRawMaterialsWithUsage()
       setRawMaterials(data)
     } catch (error) {
       console.error('Error fetching raw materials:', error)
@@ -27,14 +33,28 @@ export default function InventoryPage() {
   }
 
   const handleDelete = async (id: number) => {
-    if (!confirm('Are you sure you want to delete this raw material?')) return
+    const material = rawMaterials.find(item => item.id === id)
+    if (!material) return
+
+    let confirmMessage = `Are you sure you want to delete "${material.name}"?`
+    
+    if (material.is_used_in_recipes) {
+      confirmMessage += `\n\n⚠️  WARNING: This ingredient is currently used in ${material.usage_count} food item(s):\n• ${material.food_items.join('\n• ')}\n\nDeleting this will prevent these food items from being prepared until you update their recipes.`
+    }
+    
+    confirmMessage += '\n\nThis action cannot be undone.'
+    
+    if (!confirm(confirmMessage)) return
 
     try {
       await api.deleteRawMaterial(id)
       setRawMaterials(rawMaterials.filter(item => item.id !== id))
-    } catch (error) {
+    } catch (error: any) {
       console.error('Error deleting raw material:', error)
-      alert('Error deleting raw material')
+      
+      // Show the specific error message from the backend
+      const errorMessage = error.response?.data?.detail || 'Error deleting raw material'
+      alert(errorMessage)
     }
   }
 
@@ -167,9 +187,9 @@ export default function InventoryPage() {
                 </Link>
                 <button
                   onClick={() => handleDelete(material.id)}
-                  className="bg-red-600 hover:bg-red-700 text-white font-medium py-2 px-3 rounded-lg transition-colors"
+                  className="bg-gray-200 hover:bg-gray-300 text-gray-800 dark:bg-gray-700 dark:hover:bg-gray-600 dark:text-gray-200 font-medium py-2 px-3 rounded-lg transition-colors"
                 >
-                  <Trash2 className="h-4 w-4" />
+                  <X className="h-4 w-4" />
                 </button>
               </div>
             </div>

@@ -193,19 +193,19 @@ export default function Dashboard() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
           <Link 
             href="/inventory/add" 
-            className="bg-gradient-to-r from-blue-600 to-blue-700 text-white p-4 rounded-lg text-center font-medium hover:from-blue-700 hover:to-blue-800 transition-all transform hover:scale-105"
+            className="bg-white dark:bg-gray-800 border-2 border-gray-200 dark:border-gray-700 hover:border-green-500 dark:hover:border-green-400 text-gray-700 dark:text-gray-300 hover:text-green-600 dark:hover:text-green-400 p-4 rounded-lg text-center font-medium transition-all duration-300 hover:shadow-lg hover:-translate-y-1"
           >
             Add Raw Material
           </Link>
           <Link 
             href="/menu/add" 
-            className="bg-gradient-to-r from-purple-600 to-purple-700 text-white p-4 rounded-lg text-center font-medium hover:from-purple-700 hover:to-purple-800 transition-all transform hover:scale-105"
+            className="bg-white dark:bg-gray-800 border-2 border-gray-200 dark:border-gray-700 hover:border-green-500 dark:hover:border-green-400 text-gray-700 dark:text-gray-300 hover:text-green-600 dark:hover:text-green-400 p-4 rounded-lg text-center font-medium transition-all duration-300 hover:shadow-lg hover:-translate-y-1"
           >
             Create Food Item
           </Link>
           <Link 
             href="/orders/new" 
-            className="bg-gradient-to-r from-green-600 to-green-700 text-white p-4 rounded-lg text-center font-medium hover:from-green-700 hover:to-green-800 transition-all transform hover:scale-105"
+            className="bg-white dark:bg-gray-800 border-2 border-gray-200 dark:border-gray-700 hover:border-green-500 dark:hover:border-green-400 text-gray-700 dark:text-gray-300 hover:text-green-600 dark:hover:text-green-400 p-4 rounded-lg text-center font-medium transition-all duration-300 hover:shadow-lg hover:-translate-y-1"
           >
             Place New Order
           </Link>
