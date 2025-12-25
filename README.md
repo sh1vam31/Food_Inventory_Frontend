@@ -1,16 +1,16 @@
-🍕 Food Inventory Management System – Frontend
+ Food Inventory Management System – Frontend
 
 This is the frontend of my Food Inventory Management System, built using Next.js, TypeScript, and Tailwind CSS.
 The goal of this project is to provide a clean and practical interface for managing food inventory, menu items, and orders while keeping inventory usage accurate in real time.
 
 The UI is designed to be simple, responsive, and easy to use, with support for both dark and light themes.
 
-🔗 Live Demo:
-👉 https://food-inventory-frontend.vercel.app/home
+ Live Demo:
+ https://food-inventory-frontend.vercel.app/home
 
 ⸻
 
-🛠 Tech Stack
+ Tech Stack
 	•	Next.js (App Router)
 	•	TypeScript
 	•	Tailwind CSS
@@ -19,9 +19,9 @@ The UI is designed to be simple, responsive, and easy to use, with support for b
 
 ⸻
 
-✨ Features
+ Features
 
-🎨 User Interface
+ User Interface
 	•	Clean and modern UI using Tailwind CSS
 	•	Dark and light theme support (system preference + manual toggle)
 	•	Fully responsive layout (mobile, tablet, desktop)
@@ -29,7 +29,7 @@ The UI is designed to be simple, responsive, and easy to use, with support for b
 
 ⸻
 
-🏪 Inventory Management
+ Inventory Management
 	•	Add, update, and delete raw materials
 	•	Validation to prevent incorrect inputs
 	•	Visual indicators for:
@@ -41,7 +41,7 @@ The UI is designed to be simple, responsive, and easy to use, with support for b
 
 ⸻
 
-🍽️ Menu Management
+ Menu Management
 	•	Create food items with pricing
 	•	Visual recipe builder to define ingredient usage
 	•	Automatic availability calculation based on stock
@@ -49,7 +49,7 @@ The UI is designed to be simple, responsive, and easy to use, with support for b
 
 ⸻
 
-📋 Order Processing
+ Order Processing
 	•	Real-time inventory checks while adding items to cart
 	•	Order validation before placement
 	•	Clear error messages if stock is insufficient
@@ -57,7 +57,7 @@ The UI is designed to be simple, responsive, and easy to use, with support for b
 
 ⸻
 
-🚀 Getting Started (Local Setup)
+ Getting Started (Local Setup)
 
 Prerequisites
 	•	Node.js 18+
@@ -66,7 +66,7 @@ Prerequisites
 
 Run the App :  npm run dev
 
-📁 Project Structure
+ Project Structure
 
 frontend/
 ├── app/
@@ -89,7 +89,7 @@ frontend/
 │   └── index.ts
 └── public/
 
-🎨 UI & Design Choices
+ UI & Design Choices
 	•	Color Theme: Emerald / teal based palette
 	•	Typography: Clean hierarchy for readability
 	•	Spacing: Consistent padding and margins using Tailwind
@@ -101,7 +101,7 @@ Custom utility classes include:
 	•	.badge
 	•	.form-input
 
-🔄 API Integration
+ API Integration
 
 The frontend communicates with the backend using a centralized API client that handles:
 	•	Base URL configuration
@@ -125,7 +125,7 @@ checkInventoryAvailability(orderData)
 createOrder(orderData)
 getOrders()
 
-📈 Performance
+ Performance
 	•	Next.js App Router for optimized routing
 	•	Automatic code splitting
 	•	Static generation where applicable
