@@ -22,9 +22,14 @@ app = FastAPI(
 )
 
 # CORS middleware - Configure for production
+# Allow multiple localhost ports for development (Next.js auto-increments)
 allowed_origins = [
     "http://localhost:3000",
     "http://localhost:3001",
+    "http://localhost:3002",
+    "http://localhost:3003",
+    "http://localhost:3004",
+    "http://localhost:3005",
     "https://food-inventory-frontend.vercel.app",  # Your actual Vercel domain
 ]
 
