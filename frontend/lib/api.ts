@@ -3,6 +3,7 @@ import {
   RawMaterial,
   RawMaterialCreate,
   RawMaterialUpdate,
+  RawMaterialWithUsage,
   FoodItem,
   FoodItemCreate,
   Order,
@@ -10,7 +11,7 @@ import {
   InventoryCheckResult
 } from '@/types'
 
-const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000'
+const API_BASE_URL = process.env.NEXT_PUBLIC_FOOD_API_URL || 'http://localhost:8000'
 
 console.log('API Base URL:', API_BASE_URL) // For debugging
 
@@ -21,17 +22,36 @@ const apiClient = axios.create({
   },
 })
 
-// Request interceptor for logging
+// Request interceptor to add auth token
 apiClient.interceptors.request.use((config) => {
   console.log(`API Request: ${config.method?.toUpperCase()} ${config.url}`)
+  
+  // Add auth token if available
+  if (typeof window !== 'undefined') {
+    const token = localStorage.getItem('access_token')
+    if (token) {
+      config.headers.Authorization = `Bearer ${token}`
+    }
+  }
+  
   return config
 })
 
-// Response interceptor for error handling
+// Response interceptor for error handling and token refresh
 apiClient.interceptors.response.use(
   (response) => response,
-  (error) => {
+  async (error) => {
     console.error('API Error:', error.response?.data || error.message)
+    
+    // Handle 401 errors (unauthorized)
+    if (error.response?.status === 401) {
+      // Clear token and redirect to login
+      if (typeof window !== 'undefined') {
+        localStorage.removeItem('access_token')
+        window.location.href = '/login'
+      }
+    }
+    
     return Promise.reject(error)
   }
 )
@@ -43,7 +63,7 @@ export const api = {
     return response.data
   },
 
-  async getRawMaterialsWithUsage(): Promise<RawMaterial[]> {
+  async getRawMaterialsWithUsage(): Promise<RawMaterialWithUsage[]> {
     const response = await apiClient.get('/api/raw-materials/with-usage')
     return response.data
   },
@@ -108,9 +128,22 @@ export const api = {
     return response.data
   },
 
-  async updateFoodItemAvailability(id: number, isAvailable: boolean): Promise<{ message: string; is_available: boolean }> {
+  async updateFoodItem(id: number, data: FoodItemCreate): Promise<FoodItem> {
+    const response = await apiClient.put(`/api/food-items/${id}`, data)
+    return response.data
+  },
+
+  async updateFoodItemAvailability(id: number, isAvailable: boolean, deleteIngredients: boolean = false): Promise<{ 
+    message: string; 
+    is_available: boolean;
+    ingredients_deleted?: boolean;
+    deleted_ingredients?: any[];
+  }> {
     const response = await apiClient.patch(`/api/food-items/${id}/availability`, null, {
-      params: { is_available: isAvailable }
+      params: { 
+        is_available: isAvailable,
+        delete_ingredients: deleteIngredients
+      }
     })
     return response.data
   },

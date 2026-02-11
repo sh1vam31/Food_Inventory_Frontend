@@ -165,7 +165,7 @@ ENVIRONMENT=development
 
 **Frontend (.env.local)**
 ```env
-NEXT_PUBLIC_API_URL=http://localhost:8000
+NEXT_PUBLIC_FOOD_API_URL=http://localhost:8000
 ```
 
 ## 📊 Sample Data

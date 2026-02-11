@@ -66,7 +66,7 @@ Your backend will be available at: `https://your-service-name.onrender.com`
      - **Output Directory**: `.next`
 
 3. **Environment Variables**:
-   - `NEXT_PUBLIC_API_URL`: `https://your-backend-service.onrender.com`
+   - `NEXT_PUBLIC_FOOD_API_URL`: `https://your-backend-service.onrender.com`
 
 4. **Deploy**: Click "Deploy"
 
@@ -119,7 +119,7 @@ After backend deployment, initialize the database with sample data:
    - Check environment variables are set correctly
 
 2. **API Connection Issues**
-   - Verify NEXT_PUBLIC_API_URL is correct
+   - Verify NEXT_PUBLIC_FOOD_API_URL is correct
    - Check backend service is running on Render
 
 3. **Database Issues**

@@ -1,14 +1,19 @@
 import os
-from fastapi import FastAPI
+from fastapi import FastAPI, Depends
 from fastapi.middleware.cors import CORSMiddleware
+from sqlalchemy.orm import Session
 from app.routers import raw_materials_router, food_items_router, orders_router
-from app.database import engine
-from app.models import raw_material, food_item, order
+from app.routers.auth import router as auth_router
+from app.database import engine, get_db
+from app.models import raw_material, food_item, order, user
+from app.services.user_service import UserService
+from app.core.config import settings
 
 # Create database tables
 raw_material.Base.metadata.create_all(bind=engine)
 food_item.Base.metadata.create_all(bind=engine)
 order.Base.metadata.create_all(bind=engine)
+user.Base.metadata.create_all(bind=engine)
 
 app = FastAPI(
     title="Food Order & Inventory Management System",
@@ -20,14 +25,14 @@ app = FastAPI(
 allowed_origins = [
     "http://localhost:3000",
     "http://localhost:3001",
-    "https://your-app-name.vercel.app",  # Replace with your actual Vercel domain
+    "https://food-inventory-frontend.vercel.app",  # Your actual Vercel domain
 ]
 
 # In production, you might want to be more restrictive
-if os.getenv("ENVIRONMENT") == "production":
+if settings.is_production:
     # Add your production frontend URL here
     allowed_origins = [
-        "https://your-app-name.vercel.app",  # Replace with your actual Vercel domain
+        "https://food-inventory-frontend.vercel.app",  # Your actual Vercel domain
     ]
 
 app.add_middleware(
@@ -39,16 +44,29 @@ app.add_middleware(
 )
 
 # Include routers
+app.include_router(auth_router)
 app.include_router(raw_materials_router)
 app.include_router(food_items_router)
 app.include_router(orders_router)
 
 
+@app.on_event("startup")
+async def startup_event():
+    """Startup event - admin creation disabled to avoid bcrypt issues"""
+    print("✅ Server started successfully")
+    print("💡 Use /api/auth/create-first-admin to create admin user")
+    # Disabled automatic admin creation due to bcrypt compatibility issues
+    # Use the /api/auth/create-first-admin endpoint instead
+
+
 @app.get("/")
 def read_root():
+    db_type = "PostgreSQL" if settings.is_postgresql else "SQLite"
     return {
         "message": "Food Order & Inventory Management System API",
         "version": "1.0.0",
+        "environment": settings.environment,
+        "database": db_type,
         "docs": "/docs",
         "features": [
             "Raw material management",
@@ -61,7 +79,13 @@ def read_root():
 
 @app.get("/health")
 def health_check():
-    return {"status": "healthy", "message": "API is running"}
+    db_type = "PostgreSQL" if settings.is_postgresql else "SQLite"
+    return {
+        "status": "healthy", 
+        "message": "API is running",
+        "database": db_type,
+        "environment": settings.environment
+    }
 
 
 if __name__ == "__main__":

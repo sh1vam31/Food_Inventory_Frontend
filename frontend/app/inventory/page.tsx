@@ -1,16 +1,10 @@
 'use client'
 
 import { useEffect, useState } from 'react'
-import { Plus, Edit, Trash2, AlertTriangle, Package, ChefHat } from 'lucide-react'
+import { Plus, Edit, AlertTriangle, Package, X } from 'lucide-react'
 import { api } from '@/lib/api'
-import { RawMaterial } from '@/types'
+import { RawMaterial, RawMaterialWithUsage } from '@/types'
 import Link from 'next/link'
-
-interface RawMaterialWithUsage extends RawMaterial {
-  is_used_in_recipes: boolean;
-  food_items: string[];
-  usage_count: number;
-}
 
 export default function InventoryPage() {
   const [rawMaterials, setRawMaterials] = useState<RawMaterialWithUsage[]>([])
@@ -24,7 +18,7 @@ export default function InventoryPage() {
   const fetchRawMaterials = async () => {
     try {
       const data = await api.getRawMaterialsWithUsage()
-      setRawMaterials(data as RawMaterialWithUsage[])
+      setRawMaterials(data)
     } catch (error) {
       console.error('Error fetching raw materials:', error)
     } finally {
@@ -49,22 +43,12 @@ export default function InventoryPage() {
     try {
       await api.deleteRawMaterial(id)
       setRawMaterials(rawMaterials.filter(item => item.id !== id))
-      
-      // Show success message
-      alert(`"${material.name}" has been deleted successfully.`)
     } catch (error: any) {
       console.error('Error deleting raw material:', error)
       
-      // Show specific error message from the API
+      // Show the specific error message from the backend
       const errorMessage = error.response?.data?.detail || 'Error deleting raw material'
-      
-      // If it's a constraint error, show a more user-friendly dialog
-      if (errorMessage.includes('is used in these food items:')) {
-        const foodItems = errorMessage.match(/food items: (.+)\. Please/)?.[1] || 'some food items'
-        alert(`❌ Cannot delete "${material.name}"\n\nThis ingredient is currently used in: ${foodItems}\n\nTo delete this raw material, you need to:\n1. Edit the food items that use this ingredient\n2. Remove this ingredient from their recipes\n3. Then try deleting again`)
-      } else {
-        alert(errorMessage)
-      }
+      alert(errorMessage)
     }
   }
 
@@ -75,7 +59,7 @@ export default function InventoryPage() {
   if (loading) {
     return (
       <div className="flex items-center justify-center min-h-64">
-        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary-600"></div>
+        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-green-600"></div>
       </div>
     )
   }
@@ -90,7 +74,7 @@ export default function InventoryPage() {
             Manage your raw materials and monitor stock levels
           </p>
         </div>
-        <Link href="/inventory/add" className="btn btn-primary">
+        <Link href="/inventory/add" className="bg-green-600 hover:bg-green-700 text-white font-medium py-2 px-4 rounded-lg transition-colors flex items-center">
           <Plus className="h-4 w-4 mr-2" />
           Add Raw Material
         </Link>
@@ -134,7 +118,7 @@ export default function InventoryPage() {
             }
           </p>
           {filter === 'all' && (
-            <Link href="/inventory/add" className="btn btn-primary">
+            <Link href="/inventory/add" className="bg-green-600 hover:bg-green-700 text-white font-medium py-2 px-4 rounded-lg transition-colors">
               Add Raw Material
             </Link>
           )}
@@ -142,29 +126,18 @@ export default function InventoryPage() {
       ) : (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {filteredMaterials.map((material) => (
-            <div key={material.id} className="card">
+            <div key={material.id} className="bg-white dark:bg-slate-800 rounded-xl p-6 shadow-sm border border-gray-200 dark:border-slate-700">
               <div className="flex items-start justify-between mb-4">
                 <div>
                   <h3 className="text-lg font-semibold text-gray-900 dark:text-gray-100">{material.name}</h3>
                   <p className="text-sm text-gray-600 dark:text-gray-400">Unit: {material.unit}</p>
                 </div>
-                <div className="flex items-center space-x-2">
-                  {material.is_used_in_recipes && (
-                    <span 
-                      className="badge badge-info flex items-center"
-                      title={`Used in ${material.usage_count} recipe(s): ${material.food_items.join(', ')}`}
-                    >
-                      <ChefHat className="h-3 w-3 mr-1" />
-                      Recipe
-                    </span>
-                  )}
-                  {material.is_low_stock && (
-                    <span className="badge badge-warning">
-                      <AlertTriangle className="h-3 w-3 mr-1" />
-                      Low Stock
-                    </span>
-                  )}
-                </div>
+                {material.is_low_stock && (
+                  <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-yellow-100 dark:bg-yellow-900 text-yellow-800 dark:text-yellow-200">
+                    <AlertTriangle className="h-3 w-3 mr-1" />
+                    Low Stock
+                  </span>
+                )}
               </div>
 
               <div className="space-y-3 mb-4">
@@ -201,16 +174,16 @@ export default function InventoryPage() {
               <div className="flex space-x-2">
                 <Link
                   href={`/inventory/edit/${material.id}`}
-                  className="flex-1 btn btn-secondary text-center"
+                  className="flex-1 bg-gray-300 hover:bg-gray-400 dark:bg-gray-600 dark:hover:bg-gray-500 text-gray-700 dark:text-gray-200 font-medium py-2 px-3 rounded-lg transition-colors text-center flex items-center justify-center"
                 >
                   <Edit className="h-4 w-4 mr-1" />
                   Edit
                 </Link>
                 <button
                   onClick={() => handleDelete(material.id)}
-                  className="btn btn-danger"
+                  className="bg-gray-200 hover:bg-gray-300 text-gray-800 dark:bg-gray-700 dark:hover:bg-gray-600 dark:text-gray-200 font-medium py-2 px-3 rounded-lg transition-colors"
                 >
-                  <Trash2 className="h-4 w-4" />
+                  <X className="h-4 w-4" />
                 </button>
               </div>
             </div>

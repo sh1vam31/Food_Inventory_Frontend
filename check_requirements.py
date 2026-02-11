@@ -14,13 +14,13 @@ def check_command(command, name, install_instructions):
             result = subprocess.run([command, '--version'], 
                                   capture_output=True, text=True, timeout=5)
             version = result.stdout.split('\n')[0] if result.stdout else result.stderr.split('\n')[0]
-            print(f"✅ {name}: {version}")
+            print(f" {name}: {version}")
             return True
         except:
-            print(f"✅ {name}: Installed (version check failed)")
+            print(f" {name}: Installed (version check failed)")
             return True
     else:
-        print(f"❌ {name}: Not found")
+        print(f" {name}: Not found")
         print(f"   Install with: {install_instructions}")
         return False
 
@@ -29,13 +29,13 @@ def check_python_version():
     try:
         version = sys.version_info
         if version.major >= 3 and version.minor >= 9:
-            print(f"✅ Python: {version.major}.{version.minor}.{version.micro}")
+            print(f" Python: {version.major}.{version.minor}.{version.micro}")
             return True
         else:
-            print(f"❌ Python: {version.major}.{version.minor}.{version.micro} (need 3.9+)")
+            print(f" Python: {version.major}.{version.minor}.{version.micro} (need 3.9+)")
             return False
     except:
-        print("❌ Python: Version check failed")
+        print(" Python: Version check failed")
         return False
 
 def check_postgresql():
@@ -45,26 +45,26 @@ def check_postgresql():
             result = subprocess.run(['psql', '--version'], 
                                   capture_output=True, text=True, timeout=5)
             version = result.stdout.strip()
-            print(f"✅ PostgreSQL: {version}")
+            print(f" PostgreSQL: {version}")
             
             # Check if we can connect
             try:
                 result = subprocess.run(['psql', '-c', 'SELECT 1;'], 
                                       capture_output=True, text=True, timeout=5)
                 if result.returncode == 0:
-                    print("✅ PostgreSQL: Connection successful")
+                    print("PostgreSQL: Connection successful")
                 else:
-                    print("⚠️  PostgreSQL: Installed but connection failed")
+                    print(" PostgreSQL: Installed but connection failed")
                     print("   You may need to start PostgreSQL or create a user")
             except:
-                print("⚠️  PostgreSQL: Installed but connection test failed")
+                print("  PostgreSQL: Installed but connection test failed")
             
             return True
         except:
-            print("✅ PostgreSQL: Installed (version check failed)")
+            print(" PostgreSQL: Installed (version check failed)")
             return True
     else:
-        print("❌ PostgreSQL: Not found")
+        print(" PostgreSQL: Not found")
         print("   macOS: brew install postgresql && brew services start postgresql")
         print("   Ubuntu: sudo apt install postgresql postgresql-contrib")
         return False
@@ -95,13 +95,13 @@ def main():
     print("\n" + "=" * 50)
     
     if all_good:
-        print("🎉 All requirements are satisfied!")
-        print("✅ You can run the setup script: ./setup_manual.sh")
-        print("📖 Or follow the manual setup guide: MANUAL_SETUP.md")
+        print(" All requirements are satisfied!")
+        print(" You can run the setup script: ./setup_manual.sh")
+        print(" Or follow the manual setup guide: MANUAL_SETUP.md")
     else:
-        print("❌ Some requirements are missing")
+        print(" Some requirements are missing")
         print("Please install the missing software and run this check again")
-        print("📖 See MANUAL_SETUP.md for detailed installation instructions")
+        print(" See MANUAL_SETUP.md for detailed installation instructions")
     
     return 0 if all_good else 1
 

@@ -15,13 +15,13 @@ def test_api_health():
     try:
         response = requests.get(f"{API_BASE}/health")
         if response.status_code == 200:
-            print("✅ API is running")
+            print(" API is running")
             return True
         else:
-            print("❌ API health check failed")
+            print("API health check failed")
             return False
     except requests.exceptions.ConnectionError:
-        print("❌ Cannot connect to API. Make sure backend is running on port 8000")
+        print(" Cannot connect to API. Make sure backend is running on port 8000")
         return False
 
 def test_raw_materials():
@@ -39,15 +39,15 @@ def test_raw_materials():
     response = requests.post(f"{API_BASE}/api/raw-materials", json=raw_material_data)
     if response.status_code == 201:
         material = response.json()
-        print(f"✅ Created raw material: {material['name']} (ID: {material['id']})")
+        print(f"Created raw material: {material['name']} (ID: {material['id']})")
         return material['id']
     else:
-        print(f"❌ Failed to create raw material: {response.text}")
+        print(f"Failed to create raw material: {response.text}")
         return None
 
 def test_food_items(raw_material_id):
     """Test food item creation with recipe"""
-    print("\n🧪 Testing Food Item Management...")
+    print("\n Testing Food Item Management...")
     
     food_item_data = {
         "name": "Test Pizza",
@@ -64,16 +64,16 @@ def test_food_items(raw_material_id):
     response = requests.post(f"{API_BASE}/api/food-items", json=food_item_data)
     if response.status_code == 201:
         food_item = response.json()
-        print(f"✅ Created food item: {food_item['name']} (ID: {food_item['id']})")
+        print(f" Created food item: {food_item['name']} (ID: {food_item['id']})")
         print(f"   Recipe: {food_item['ingredients'][0]['quantity_required_per_unit']} {food_item['ingredients'][0]['raw_material_unit']} {food_item['ingredients'][0]['raw_material_name']}")
         return food_item['id']
     else:
-        print(f"❌ Failed to create food item: {response.text}")
+        print(f" Failed to create food item: {response.text}")
         return None
 
 def test_inventory_check(food_item_id):
     """Test inventory availability check"""
-    print("\n🧪 Testing Inventory Availability Check...")
+    print("\n Testing Inventory Availability Check...")
     
     order_data = {
         "items": [
@@ -87,7 +87,7 @@ def test_inventory_check(food_item_id):
     response = requests.post(f"{API_BASE}/api/orders/check-inventory", json=order_data)
     if response.status_code == 200:
         result = response.json()
-        print(f"✅ Inventory check completed")
+        print(f" Inventory check completed")
         print(f"   Can fulfill: {result['can_fulfill']}")
         print(f"   Total price: ${result['total_price']:.2f}")
         if not result['can_fulfill']:
@@ -99,12 +99,12 @@ def test_inventory_check(food_item_id):
                     print(f"     - {missing['raw_material_name']}: need {missing['required']} {missing['unit']}, have {missing['available']} {missing['unit']}")
         return result
     else:
-        print(f"❌ Inventory check failed: {response.text}")
+        print(f" Inventory check failed: {response.text}")
         return None
 
 def test_order_placement(food_item_id):
     """Test order placement with inventory deduction"""
-    print("\n🧪 Testing Order Placement with Inventory Deduction...")
+    print("\n Testing Order Placement with Inventory Deduction...")
     
     # First, check current inventory
     response = requests.get(f"{API_BASE}/api/raw-materials")
@@ -115,7 +115,7 @@ def test_order_placement(food_item_id):
             initial_quantity = flour['quantity_available']
             print(f"   Initial flour quantity: {initial_quantity} kg")
         else:
-            print("❌ Could not find test flour")
+            print(" Could not find test flour")
             return False
     
     # Place order for 5 pizzas (should use 2.5kg flour)
@@ -131,7 +131,7 @@ def test_order_placement(food_item_id):
     response = requests.post(f"{API_BASE}/api/orders", json=order_data)
     if response.status_code == 201:
         order = response.json()
-        print(f"✅ Order placed successfully (ID: {order['id']})")
+        print(f" Order placed successfully (ID: {order['id']})")
         print(f"   Total price: ${order['total_price']:.2f}")
         print(f"   Status: {order['status']}")
         
@@ -150,15 +150,15 @@ def test_order_placement(food_item_id):
                 # Verify correct deduction (5 pizzas * 0.5kg = 2.5kg)
                 expected_deduction = 5 * 0.5
                 if abs(deducted - expected_deduction) < 0.01:
-                    print("✅ Inventory deduction is CORRECT!")
+                    print(" Inventory deduction is CORRECT!")
                     return True
                 else:
-                    print(f"❌ Inventory deduction is WRONG! Expected {expected_deduction}kg, got {deducted}kg")
+                    print(f" Inventory deduction is WRONG! Expected {expected_deduction}kg, got {deducted}kg")
                     return False
         
         return True
     else:
-        print(f"❌ Order placement failed: {response.text}")
+        print(f" Order placement failed: {response.text}")
         return False
 
 def test_insufficient_inventory(food_item_id):
@@ -177,44 +177,44 @@ def test_insufficient_inventory(food_item_id):
     
     response = requests.post(f"{API_BASE}/api/orders", json=order_data)
     if response.status_code == 400:
-        print("✅ Order correctly rejected due to insufficient inventory")
+        print(" Order correctly rejected due to insufficient inventory")
         print(f"   Error: {response.json()['detail']}")
         return True
     elif response.status_code == 201:
-        print("❌ Order was placed when it should have been rejected!")
+        print(" Order was placed when it should have been rejected!")
         return False
     else:
-        print(f"❌ Unexpected response: {response.status_code} - {response.text}")
+        print(f" Unexpected response: {response.status_code} - {response.text}")
         return False
 
 def cleanup(raw_material_id, food_item_id):
     """Clean up test data"""
-    print("\n🧹 Cleaning up test data...")
+    print("\n Cleaning up test data...")
     
     # Delete food item
     if food_item_id:
         response = requests.delete(f"{API_BASE}/api/food-items/{food_item_id}")
         if response.status_code == 200:
-            print("✅ Deleted test food item")
+            print(" Deleted test food item")
         else:
-            print("⚠️  Could not delete test food item")
+            print("  Could not delete test food item")
     
     # Delete raw material
     if raw_material_id:
         response = requests.delete(f"{API_BASE}/api/raw-materials/{raw_material_id}")
         if response.status_code == 200:
-            print("✅ Deleted test raw material")
+            print(" Deleted test raw material")
         else:
-            print("⚠️  Could not delete test raw material")
+            print("  Could not delete test raw material")
 
 def main():
     """Run all tests"""
-    print("🧪 Food Order & Inventory Management System - Test Suite")
+    print(" Food Order & Inventory Management System - Test Suite")
     print("=" * 60)
     
     # Test API health
     if not test_api_health():
-        print("\n❌ Cannot proceed with tests. Please start the backend server.")
+        print("\n Cannot proceed with tests. Please start the backend server.")
         return
     
     raw_material_id = None
