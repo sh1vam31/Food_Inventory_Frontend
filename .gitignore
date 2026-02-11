@@ -1,15 +1,22 @@
 # Dependencies
 node_modules/
 */node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
 
 # Production builds
 .next/
+out/
 dist/
 build/
 
 # Environment variables
 .env
 .env.local
+.env*.local
 .env.production
 .env.staging
 *.env
@@ -18,6 +25,7 @@ build/
 *.db
 *.sqlite
 *.sqlite3
+food_inventory.db
 
 # Python
 __pycache__/
@@ -30,6 +38,14 @@ venv/
 ENV/
 env.bak/
 venv.bak/
+.venv/
+
+# Vercel
+.vercel
+
+# TypeScript
+*.tsbuildinfo
+next-env.d.ts
 
 # IDE
 .vscode/
@@ -37,6 +53,11 @@ venv.bak/
 *.swp
 *.swo
 *~
+*.suo
+*.ntvs*
+*.njsproj*
+*.sln
+*.sw?
 
 # OS
 .DS_Store
@@ -57,14 +78,20 @@ pids/
 *.seed
 *.pid.lock
 
-# Coverage directory used by tools like istanbul
+# Coverage directory
 coverage/
+*.lcov
+.nyc_output
+htmlcov/
+.coverage
+.pytest_cache/
 
 # Dependency directories
 jspm_packages/
 
-# Optional npm cache directory
+# Optional caches
 .npm
+.eslintcache
 
 # Optional REPL history
 .node_repl_history
@@ -75,11 +102,27 @@ jspm_packages/
 # Yarn Integrity file
 .yarn-integrity
 
-# dotenv environment variables file
-.env
+# Parcel cache
+.cache
+.parcel-cache
 
-# Vercel
-.vercel
+# Storybook build outputs
+.out
+.storybook-out
+storybook-static
+
+# Temporary folders
+tmp/
+temp/
+*.tmp
+*.temp
+*.bak
+*.backup
 
 # Render
 .render
+.render/
+
+# Alembic
+alembic/versions/*.py
+!alembic/versions/0001_initial_migration.py
