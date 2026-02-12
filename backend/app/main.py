@@ -38,6 +38,10 @@ if settings.is_production:
     # Add your production frontend URL here
     allowed_origins = [
         "https://food-inventory-frontend.vercel.app",  # Your actual Vercel domain
+        "http://localhost:3000",  # For local testing
+        "http://localhost:3001",
+        "http://localhost:3002",
+        "http://localhost:3003",
     ]
 
 app.add_middleware(
