@@ -8,7 +8,7 @@ A complete, production-ready food inventory management system with automatic raw
 
 ## 🌐 Live Demo
 
-**Frontend**: https://food-inventory-frontend.vercel.app
+**Frontend**: food-inventory-frontend-j9yy4cbh2.vercel.app
 
 ## ✨ Features
 
