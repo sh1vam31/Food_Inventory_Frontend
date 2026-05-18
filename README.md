@@ -1,4 +1,4 @@
-# 🍕 Food Order & Inventory Management System
+#  Food Order & Inventory Management System
 
 A complete, production-ready food inventory management system with automatic raw material deduction, authentication, and admin features.
 
@@ -6,50 +6,50 @@ A complete, production-ready food inventory management system with automatic raw
 ![Backend](https://img.shields.io/badge/Backend-FastAPI-009688?style=for-the-badge&logo=fastapi)
 ![Database](https://img.shields.io/badge/Database-SQLite-003B57?style=for-the-badge&logo=sqlite)
 
-## 🌐 Live Demo
+##  Live Demo
 
 **Frontend**: https://food-inventory-frontend-j9yy4cbh2.vercel.app/
 
-## ✨ Features
+##  Features
 
-### 🔐 Authentication & Authorization
+###  Authentication & Authorization
 - **User Management**: Admin, manager, and staff roles
 - **Secure Login**: JWT-based authentication with refresh tokens
 - **Protected Routes**: Role-based access control
 - **Admin Dashboard**: User management and system overview
 
-### 🏪 Inventory Management
+###  Inventory Management
 - **Raw Materials**: Track ingredients with units, quantities, and minimum thresholds
 - **Low Stock Alerts**: Visual indicators for items below minimum threshold
 - **Smart Deletion**: Prevents deletion of materials used in recipes with detailed warnings
 - **Edit Capabilities**: Update stock levels and material details
 
-### 🍽️ Menu Management
+###  Menu Management
 - **Food Items**: Create menu items with prices and availability
 - **Recipe Builder**: Define ingredient requirements for each food item
 - **Availability Tracking**: Automatic availability based on ingredient stock
 - **Edit Recipes**: Modify existing food items and their recipes
 
-### 📋 Order Processing
+###  Order Processing
 - **Smart Ordering**: Real-time inventory checking before order placement
 - **Atomic Transactions**: Guaranteed inventory deduction with rollback protection
 - **Order Tracking**: Complete order lifecycle management (Placed → Completed/Cancelled)
 - **Order Details**: View detailed information for each order
 
-### 🎨 User Experience
+###  User Experience
 - **Modern UI**: Clean, responsive design with Tailwind CSS
 - **Dark/Light Theme**: Automatic theme switching with system preference
 - **Real-time Updates**: Live inventory status and availability checking
 - **Mobile Responsive**: Works perfectly on all device sizes
 
-### 🔧 Technical Excellence
+###  Technical Excellence
 - **Type Safety**: Full TypeScript implementation
 - **API Documentation**: Auto-generated OpenAPI/Swagger docs
 - **Error Handling**: Comprehensive error handling with user-friendly messages
 - **Production Ready**: Configured for Vercel and Render deployment
 - **Database Support**: SQLite for local, PostgreSQL for production
 
-## 🚀 Quick Start
+##  Quick Start
 
 ### Prerequisites
 - Node.js 18+ and npm
@@ -89,7 +89,7 @@ A complete, production-ready food inventory management system with automatic raw
    - Backend API: http://localhost:8000
    - API Documentation: http://localhost:8000/docs
 
-## 📁 Project Structure
+##  Project Structure
 
 ```
 food-inventory-system/
@@ -126,7 +126,7 @@ food-inventory-system/
     └── test_local_config.sh
 ```
 
-## 🏗️ Architecture
+##  Architecture
 
 ### Backend (FastAPI)
 - **Models**: SQLAlchemy ORM with proper relationships
@@ -142,7 +142,7 @@ food-inventory-system/
 - **API Integration**: Axios client with proper error handling
 - **Protected Routes**: Client-side route protection
 
-## 🔄 Core Business Logic
+##  Core Business Logic
 
 ### Inventory Deduction Algorithm
 ```python
@@ -160,7 +160,7 @@ def create_order(db: Session, order_data: OrderCreate):
 - Prevents orders that cannot be fulfilled
 - Shows detailed shortage information to users
 
-## 🚀 Deployment
+##  Deployment
 
 ### Production Deployment (Recommended)
 
@@ -200,7 +200,7 @@ NEXT_PUBLIC_FOOD_API_URL=http://localhost:8000
 NEXT_PUBLIC_FOOD_API_URL=https://your-backend.onrender.com
 ```
 
-## 📊 Sample Data
+##  Sample Data
 
 The system includes comprehensive seed scripts:
 - 10 raw materials (flour, sugar, eggs, etc.)
@@ -210,7 +210,7 @@ The system includes comprehensive seed scripts:
 
 Run `python seed_data.py` to populate the database.
 
-## 🧪 API Documentation
+##  API Documentation
 
 Interactive API documentation is available at:
 - **Swagger UI**: http://localhost:8000/docs
@@ -223,7 +223,7 @@ Interactive API documentation is available at:
 - `GET /api/food-items/` - List available menu items
 - `POST /api/orders/check-inventory` - Validate order before placement
 
-## 🤝 Contributing
+##  Contributing
 
 1. Fork the repository
 2. Create a feature branch (`git checkout -b feature/amazing-feature`)
@@ -231,7 +231,7 @@ Interactive API documentation is available at:
 4. Push to the branch (`git push origin feature/amazing-feature`)
 5. Open a Pull Request
 
-## 📞 Support
+##  Support
 
 For support and questions:
 - Create an issue on GitHub
